@@ -1,6 +1,0 @@
-C:\code\ASP.NET\HotelService\HotelService\bin\Debug\HotelService.exe.config
-C:\code\ASP.NET\HotelService\HotelService\bin\Debug\HotelService.exe
-C:\code\ASP.NET\HotelService\HotelService\bin\Debug\HotelService.pdb
-C:\code\ASP.NET\HotelService\HotelService\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\code\ASP.NET\HotelService\HotelService\obj\x86\Debug\HotelService.exe
-C:\code\ASP.NET\HotelService\HotelService\obj\x86\Debug\HotelService.pdb
