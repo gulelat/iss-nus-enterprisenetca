@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="HotelDBModelStoreContainer">
+    <EntitySet Name="RoomTypes" EntityType="HotelDBModel.Store.RoomTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rooms" EntityType="HotelDBModel.Store.Rooms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoomReservations" EntityType="HotelDBModel.Store.RoomReservations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Guests" EntityType="HotelDBModel.Store.Guests" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Payments" EntityType="HotelDBModel.Store.Payments" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="RoomTypeRoom" Association="HotelDBModel.Store.RoomTypeRoom">
+      <End Role="RoomType" EntitySet="RoomTypes" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="RoomRoomReservation" Association="HotelDBModel.Store.RoomRoomReservation">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="RoomReservation" EntitySet="RoomReservations" />
+    </AssociationSet>
+    <AssociationSet Name="GuestRoomReservation" Association="HotelDBModel.Store.GuestRoomReservation">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="RoomReservation" EntitySet="RoomReservations" />
+    </AssociationSet>
+    <AssociationSet Name="RoomReservationPayment" Association="HotelDBModel.Store.RoomReservationPayment">
+      <End Role="RoomReservation" EntitySet="RoomReservations" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="RoomTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Capacity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DailyCharge" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomNo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RoomType_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoomReservations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="NoOfGuest" Type="int" Nullable="false" />
+    <Property Name="Room_Id" Type="int" Nullable="false" />
+    <Property Name="Guest_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Guests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PassportNo" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GuestAccount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TotalCharge" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CardType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RoomReservation_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="RoomTypeRoom">
+    <End Role="RoomType" Type="HotelDBModel.Store.RoomTypes" Multiplicity="1" />
+    <End Role="Room" Type="HotelDBModel.Store.Rooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="RoomType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoomRoomReservation">
+    <End Role="Room" Type="HotelDBModel.Store.Rooms" Multiplicity="1" />
+    <End Role="RoomReservation" Type="HotelDBModel.Store.RoomReservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoomReservation">
+        <PropertyRef Name="Room_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GuestRoomReservation">
+    <End Role="Guest" Type="HotelDBModel.Store.Guests" Multiplicity="1" />
+    <End Role="RoomReservation" Type="HotelDBModel.Store.RoomReservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoomReservation">
+        <PropertyRef Name="Guest_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoomReservationPayment">
+    <End Role="RoomReservation" Type="HotelDBModel.Store.RoomReservations" Multiplicity="1" />
+    <End Role="Payment" Type="HotelDBModel.Store.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomReservation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="RoomReservation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
