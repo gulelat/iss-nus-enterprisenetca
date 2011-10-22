@@ -1,8 +1,0 @@
-C:\code\ASP.NET\HotelService\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\code\ASP.NET\HotelService\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
-C:\code\ASP.NET\HotelService\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
-C:\code\ASP.NET\HotelService\ConsoleApplication1\bin\Debug\HotelService.exe
-C:\code\ASP.NET\HotelService\ConsoleApplication1\bin\Debug\HotelService.pdb
-C:\code\ASP.NET\HotelService\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
-C:\code\ASP.NET\HotelService\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
-C:\code\ASP.NET\HotelService\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
