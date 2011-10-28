@@ -62,6 +62,9 @@ namespace Flight_DAL
                 route.ChildFare = ro.ChildFare;
                 //add the flight details
                 route.Flight = ro.Flight;
+                //add the destination 
+                route.Destination = ro.Destination;
+                route.Destination1 = ro.Destination1;
                 lstRoute.Add(route);
             }
             return lstRoute;
@@ -88,7 +91,11 @@ namespace Flight_DAL
                 route.EndCity = ro.EndCity;
                 route.AdultFare = ro.AdultFare;
                 route.ChildFare = ro.ChildFare;
+                //add the flight details
                 route.Flight = ro.Flight;
+                //add the destination 
+                route.Destination = ro.Destination;
+                route.Destination1 = ro.Destination1;
                 lstRoute.Add(route);
             }
             return lstRoute;
