@@ -12,7 +12,7 @@ namespace FlightQueryService
     public interface IFlightQueryService
     {
         [OperationContract]
-        Destination[] getListOfDestinations();
+        DestinationInfo[] getListOfDestinations();
 
         [OperationContract]
         FlightInfo[] getListOfAllFlightsBetweenCities(string sStartCityCode, string sEndCityCode);

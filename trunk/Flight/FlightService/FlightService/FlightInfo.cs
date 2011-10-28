@@ -15,6 +15,11 @@ namespace FlightQueryService
         private string flightName;
         private string startCityName;
         private string startCityCode;
+        private string endCityName;
+        private string endCityCode;
+        private string flightTime;
+        private double adultRate;
+        private double childRate;
 
         [DataMember(Name="ID")]
         public int RouteID
@@ -43,33 +48,21 @@ namespace FlightQueryService
             get { return startCityCode; }
             set { startCityCode = value; }
         }
-        private string endCityName;
-
+        
         [DataMember(Name="Destination")]  
         public string EndCityName
         {
             get { return endCityName; }
             set { endCityName = value; }
         }
-        private string endCityCode;
-
+        
         [DataMember(Name="DestinationCode")]  
         public string EndCityCode
         {
             get { return endCityCode; }
             set { endCityCode = value; }
         }
-
-        private string flightDate;
-
-        [DataMember(Name="DepartureDate")]  
-        public string FlightDate
-        {
-            get { return flightDate; }
-            set { flightDate = value; }
-        }
-        private string flightTime;
-
+               
         [DataMember(Name="Departure Time")]  
         public string FlightTime
         {
@@ -77,16 +70,14 @@ namespace FlightQueryService
             set { flightTime = value; }
         }
 
-        private double adultRate;
-
+        
         [DataMember]  
         public double AdultRate
         {
             get { return adultRate; }
             set { adultRate = value; }
         }
-        private double childRate;
-
+        
         [DataMember]  
         public double ChildRate
         {
