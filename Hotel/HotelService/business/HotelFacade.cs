@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HotelService.datacontract;
 
 namespace HotelService.business
 {
@@ -25,11 +26,11 @@ namespace HotelService.business
         }
 
 
-        public void makeSingleReservation(string roomNo, int guestId, DateTime startDtae, int duration, int noOfGuests)
+        public void makeSingleReservation(ReservationRequest reservationRequest)
         {
             IReservationBLL reservationBLL = BLLFactory.getReservationBLL();
-            DateTime endDate = startDtae + new TimeSpan(duration, 0, 0, 0);
-            reservationBLL.makeReservation(roomNo,guestId,startDtae,endDate,noOfGuests);
+            DateTime endDate = reservationRequest.StartDate + new TimeSpan(reservationRequest.Duration, 0, 0, 0);
+            reservationBLL.makeReservation(reservationRequest.RoomNo,reservationRequest.GuestName,reservationRequest.GuestPassport,  reservationRequest.StartDate, endDate, reservationRequest.NumOfGuest);
 
         }
 

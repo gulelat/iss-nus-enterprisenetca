@@ -4,6 +4,7 @@ namespace HotelService.business
     interface IReservationBLL
     {
         void makeGroupReservation(string inputFile);
-        void makeReservation(string roomNo, int guestId, DateTime startDate, DateTime endDate, int numOfGuest);
+        public void makeReservation(String roomNo, String guestName, String passport, DateTime startDate, DateTime endDate, int numOfGuest);
+  
     }
 }
