@@ -52,6 +52,7 @@
     <Compile Include="business\IReservationBLL.cs" />
     <Compile Include="business\IRoomEnquiryBLL.cs" />
     <Compile Include="business\RoomEnquiryBLL.cs" />
+    <Compile Include="datacontract\ReservationRequest.cs" />
     <Compile Include="HotelModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

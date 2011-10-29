@@ -12,7 +12,7 @@ namespace HotelService
     class ReservationBLL : HotelService.business.IReservationBLL
     {
 
-        public void makeReservation(String roomNo, int guestId, DateTime startDate, DateTime endDate, int numOfGuest)
+        public void makeReservation(String roomNo, String guestName, String passport, DateTime startDate, DateTime endDate, int numOfGuest)
         {
             RoomReservation reservtaion = RoomReservation.CreateRoomReservation(0, startDate, endDate, numOfGuest);
             
@@ -21,8 +21,14 @@ namespace HotelService
             {
 
                 reservtaion.Room = hotelDBEntities.Rooms.FirstOrDefault(room => room.RoomNo == roomNo);
-                reservtaion.Guest = hotelDBEntities.Guests.FirstOrDefault(guest => guest.Id == guestId);
+               var theGuest = hotelDBEntities.Guests.FirstOrDefault(guest => guest.Name == guestName && guest.PassportNo == passport);
+               if (theGuest == null)
+               {
 
+                   theGuest = Guest.CreateGuest(0,guestName,passport);
+
+               }
+               reservtaion.Guest = theGuest;
                 hotelDBEntities.RoomReservations.AddObject(reservtaion);
                 hotelDBEntities.SaveChanges();
             }
