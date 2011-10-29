@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Runtime.Serialization;
 
-namespace FlightQueryService
+namespace FlightService
 {
     [DataContract]
     public class DestinationInfo

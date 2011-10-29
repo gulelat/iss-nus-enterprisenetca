@@ -6,13 +6,18 @@ using Flight.BLL;
 using Flight_DAL;
 using System.ServiceModel;
 
-namespace FlightQueryService
+namespace FlightService
 {
     [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single,
                         ConcurrencyMode=ConcurrencyMode.Multiple)]
     public class FlightQueryService :IFlightQueryService
     {
         private FlightBLLFacade myFlightBLL=new FlightBLLFacade();
+
+/*        public FlightQueryService()
+        {
+            myFlightBLL = new FlightBLLFacade();
+        }*/
 
         [OperationBehavior (TransactionScopeRequired=false)]
         public DestinationInfo[] getListOfDestinations()
@@ -96,6 +101,7 @@ namespace FlightQueryService
         [OperationBehavior(TransactionScopeRequired = false)]
         public bool checkIfAvailable(string sStartCityCode, string sEndCityCode, DateTime dtFlightDate, int iNumSeats)
         {
+            //Route r = myFlightBLL.getFlightBLLInstance()
             throw new NotImplementedException();
         }
     }

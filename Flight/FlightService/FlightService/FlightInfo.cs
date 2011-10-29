@@ -6,18 +6,18 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Runtime.Serialization;
 
-namespace FlightQueryService
+namespace FlightService
 {
     [DataContract]
     public class FlightInfo
     {
-        private int iRouteID;
+        private int iRouteID;   //todo - remove the route id 
         private string flightName;
         private string startCityName;
         private string startCityCode;
         private string endCityName;
         private string endCityCode;
-        private string flightTime;
+        private string flightTime;  //todo - change to datetime
         private double adultRate;
         private double childRate;
 

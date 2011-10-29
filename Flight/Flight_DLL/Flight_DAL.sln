@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDAL", "..\Test\TestDAL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBLL", "..\TestBLL\TestBLL\TestBLL.csproj", "{013CC038-28CC-48A7-86E7-0A4C6E7D81D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightQueryService", "..\FlightService\FlightService\FlightQueryService.csproj", "{02061349-B1A6-47F1-B12C-02C81EB3375C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightService", "..\FlightService\FlightService\FlightService.csproj", "{02061349-B1A6-47F1-B12C-02C81EB3375C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
