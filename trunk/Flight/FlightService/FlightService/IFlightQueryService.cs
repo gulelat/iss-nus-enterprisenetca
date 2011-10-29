@@ -6,7 +6,7 @@ using System.ServiceModel;
 using Flight.BLL;
 using Flight_DAL;
 
-namespace FlightQueryService
+namespace FlightService
 {
     [ServiceContract]
     public interface IFlightQueryService

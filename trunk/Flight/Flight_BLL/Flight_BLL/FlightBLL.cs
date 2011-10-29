@@ -29,6 +29,7 @@ namespace Flight.BLL
             return flightDAL.getFlightDALInstance().getAllRoutesBetweenCities(startCityCode, destCityCode);
         }
 
+        //todo - remove the constraint on the number of seats. Send the number of seats available to the client
         public List<Route> getAvailableFlightBetweenCitiesOnDates(string startCity, string destCity, DateTime startDt, DateTime endDt, int numSeats)
         {
             FlightDAOFactory flightDAL = FlightDAOFactory.getInstance();
