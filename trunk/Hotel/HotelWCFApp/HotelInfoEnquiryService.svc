@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="HotelWCFApp.HotelInfoEnquiryService" CodeBehind="HotelInfoEnquiryService.svc.cs" %>
