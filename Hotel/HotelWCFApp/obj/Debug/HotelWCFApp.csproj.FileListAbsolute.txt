@@ -1,0 +1,9 @@
+C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\obj\Debug\ResolveAssemblyReference.cache
+C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\bin\HotelWCFApp.dll
+C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\bin\HotelWCFApp.pdb
+C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\bin\ConsoleApplication1.exe
+C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\bin\HotelService.dll
+C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\bin\ConsoleApplication1.pdb
+C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\bin\HotelService.pdb
+C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\obj\Debug\HotelWCFApp.dll
+C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\obj\Debug\HotelWCFApp.pdb
