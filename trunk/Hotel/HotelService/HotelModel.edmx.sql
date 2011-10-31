@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/16/2011 18:54:25
--- Generated from EDMX file: C:\code\ASP.NET\HotelService\HotelService\HotelModel.edmx
+-- Date Created: 10/30/2011 19:50:13
+-- Generated from EDMX file: C:\code\ASP.NET\Hotel\Hotel\HotelService\HotelModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -78,7 +78,8 @@ CREATE TABLE [dbo].[RoomReservations] (
     [EndDate] datetime  NOT NULL,
     [NoOfGuest] int  NOT NULL,
     [Room_Id] int  NOT NULL,
-    [Guest_Id] int  NOT NULL
+    [Guest_Id] int  NOT NULL,
+    [Payment_id] int  NOT NULL
 );
 GO
 
@@ -95,8 +96,7 @@ CREATE TABLE [dbo].[Payments] (
     [id] int IDENTITY(1,1) NOT NULL,
     [GuestAccount] nvarchar(max)  NOT NULL,
     [TotalCharge] nvarchar(max)  NOT NULL,
-    [CardType] nvarchar(max)  NOT NULL,
-    [RoomReservation_Id] int  NOT NULL
+    [CardType] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -180,18 +180,18 @@ ON [dbo].[RoomReservations]
     ([Guest_Id]);
 GO
 
--- Creating foreign key on [RoomReservation_Id] in table 'Payments'
-ALTER TABLE [dbo].[Payments]
+-- Creating foreign key on [Payment_id] in table 'RoomReservations'
+ALTER TABLE [dbo].[RoomReservations]
 ADD CONSTRAINT [FK_RoomReservationPayment]
-    FOREIGN KEY ([RoomReservation_Id])
-    REFERENCES [dbo].[RoomReservations]
-        ([Id])
+    FOREIGN KEY ([Payment_id])
+    REFERENCES [dbo].[Payments]
+        ([id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RoomReservationPayment'
 CREATE INDEX [IX_FK_RoomReservationPayment]
-ON [dbo].[Payments]
-    ([RoomReservation_Id]);
+ON [dbo].[RoomReservations]
+    ([Payment_id]);
 GO
 
 -- --------------------------------------------------
