@@ -21,7 +21,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("HotelDBModel", "RoomTypeRoom", "RoomType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HotelService.RoomType), "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HotelService.Room))]
 [assembly: EdmRelationshipAttribute("HotelDBModel", "RoomRoomReservation", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HotelService.Room), "RoomReservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HotelService.RoomReservation))]
 [assembly: EdmRelationshipAttribute("HotelDBModel", "GuestRoomReservation", "Guest", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HotelService.Guest), "RoomReservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HotelService.RoomReservation))]
-[assembly: EdmRelationshipAttribute("HotelDBModel", "RoomReservationPayment", "RoomReservation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HotelService.RoomReservation), "Payment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HotelService.Payment))]
+[assembly: EdmRelationshipAttribute("HotelDBModel", "RoomReservationPayment", "RoomReservation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HotelService.RoomReservation), "Payment", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HotelService.Payment))]
 
 #endregion
 
@@ -870,17 +870,33 @@ namespace HotelService
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("HotelDBModel", "RoomReservationPayment", "Payment")]
-        public EntityCollection<Payment> Payments
+        public Payment Payment
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Payment>("HotelDBModel.RoomReservationPayment", "Payment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Payment>("HotelDBModel.RoomReservationPayment", "Payment").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Payment>("HotelDBModel.RoomReservationPayment", "Payment").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Payment> PaymentReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Payment>("HotelDBModel.RoomReservationPayment", "Payment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Payment>("HotelDBModel.RoomReservationPayment", "Payment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Payment>("HotelDBModel.RoomReservationPayment", "Payment", value);
                 }
             }
         }

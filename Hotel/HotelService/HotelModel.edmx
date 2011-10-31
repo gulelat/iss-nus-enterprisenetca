@@ -55,6 +55,7 @@
     <Property Name="NoOfGuest" Type="int" Nullable="false" />
     <Property Name="Room_Id" Type="int" Nullable="false" />
     <Property Name="Guest_Id" Type="int" Nullable="false" />
+    <Property Name="Payment_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Guests">
     <Key>
@@ -72,7 +73,6 @@
     <Property Name="GuestAccount" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TotalCharge" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CardType" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="RoomReservation_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="RoomTypeRoom">
     <End Role="RoomType" Type="HotelDBModel.Store.RoomTypes" Multiplicity="1" />
@@ -111,14 +111,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RoomReservationPayment">
-    <End Role="RoomReservation" Type="HotelDBModel.Store.RoomReservations" Multiplicity="1" />
-    <End Role="Payment" Type="HotelDBModel.Store.Payments" Multiplicity="*" />
+    <End Role="RoomReservation" Type="HotelDBModel.Store.RoomReservations" Multiplicity="*" />
+    <End Role="Payment" Type="HotelDBModel.Store.Payments" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="RoomReservation">
-        <PropertyRef Name="Id" />
+      <Principal Role="Payment">
+        <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Payment">
-        <PropertyRef Name="RoomReservation_Id" />
+      <Dependent Role="RoomReservation">
+        <PropertyRef Name="Payment_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -182,7 +182,7 @@
           <Property Type="Int32" Name="NoOfGuest" Nullable="false" />
           <NavigationProperty Name="Room" Relationship="HotelDBModel.RoomRoomReservation" FromRole="RoomReservation" ToRole="Room" />
           <NavigationProperty Name="Guest" Relationship="HotelDBModel.GuestRoomReservation" FromRole="RoomReservation" ToRole="Guest" />
-          <NavigationProperty Name="Payments" Relationship="HotelDBModel.RoomReservationPayment" FromRole="RoomReservation" ToRole="Payment" />
+          <NavigationProperty Name="Payment" Relationship="HotelDBModel.RoomReservationPayment" FromRole="RoomReservation" ToRole="Payment" />
         </EntityType>
         <EntityType Name="Guest">
           <Key>
@@ -213,7 +213,7 @@
         </EntityType>
         <Association Name="RoomReservationPayment">
           <End Type="HotelDBModel.RoomReservation" Role="RoomReservation" Multiplicity="1" />
-          <End Type="HotelDBModel.Payment" Role="Payment" Multiplicity="*" />
+          <End Type="HotelDBModel.Payment" Role="Payment" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -292,12 +292,12 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="RoomReservationPayment" TypeName="HotelDBModel.RoomReservationPayment" StoreEntitySet="Payments">
-      <EndProperty Name="RoomReservation">
-        <ScalarProperty Name="Id" ColumnName="RoomReservation_Id" />
-      </EndProperty>
+    <AssociationSetMapping Name="RoomReservationPayment" TypeName="HotelDBModel.RoomReservationPayment" StoreEntitySet="RoomReservations">
       <EndProperty Name="Payment">
-        <ScalarProperty Name="id" ColumnName="id" />
+        <ScalarProperty Name="id" ColumnName="Payment_id" />
+      </EndProperty>
+      <EndProperty Name="RoomReservation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
