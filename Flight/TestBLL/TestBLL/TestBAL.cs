@@ -18,6 +18,9 @@ namespace TestBLL
             FlightBLLFacade bll = new FlightBLLFacade();
 
             IFlightBLL flightBLL = bll.getFlightBLLInstance();
+            //get all the flights operating between two cities
+            myInstance.listAllFlights(flightBLL, "SIN", "BLR");
+
             //list all the destinations
             DateTime dtFlight = DateTime.Now;
             myInstance.listDestinations(flightBLL);
@@ -46,6 +49,27 @@ namespace TestBLL
            
             Console.WriteLine("Press <ENTER> to exit");
             Console.ReadLine();
+        }
+
+        private void listAllFlights(IFlightBLL flightBLL, string start, string end)
+        {
+             List<Route> lst = flightBLL.getFlightsBetweenCities(start, end);
+             if (lst != null)
+             {
+                 var fl = (from r in lst
+                           select r.Flight.FlightID).Distinct();
+                 if (fl != null)
+                 {
+                     foreach (string s in fl.ToArray())
+                     {
+                         Console.WriteLine(s);
+                     }
+                 }
+             }
+             else
+             {
+                 Console.WriteLine("No flights found");
+             }
         }
 
         private void listDestinations(IFlightBLL flightBLL)
