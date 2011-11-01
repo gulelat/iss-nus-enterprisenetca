@@ -18,9 +18,6 @@ namespace Flight.BLL
         //get all the flight routes plying between two cities
         List<Route> getFlightsBetweenCities(string startCityCode, string destCityCode);
        
-        //get all the flight routes plying between the two cities within a range of dates
-        List<Route> getAvailableFlightBetweenCitiesOnDates(string startCity, string destCity, DateTime startDt, DateTime endDt, int numSeats);
-
         //check if the flight selected is available
         bool checkIfAvailable(int iRouteID, DateTime dtFlight, int numSeats);
 

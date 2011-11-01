@@ -8,22 +8,26 @@ using Flight_DAL;
 
 namespace FlightService
 {
-    [ServiceContract]
+    //TODO - Implement Async retrieval
+    [ServiceContract(Namespace = "FlightService", SessionMode = SessionMode.Required,
+                 CallbackContract = typeof(IFlightQueryCallback))]
     public interface IFlightQueryService
     {
-        [OperationContract]
-        DestinationInfo[] getListOfDestinations();
+        [OperationContract(IsOneWay = true)]
+        void getAllFlightIDs(string sStartCityCode, string sEndCityCode);
 
-        [OperationContract]
-        FlightInfo[] getListOfAllFlightsBetweenCities(string sStartCityCode, string sEndCityCode);
+        [OperationContract(IsOneWay = true)]
+        void getListOfDestinations();
 
-        [OperationContract]
-        FlightInfo[] getListOfAllAvailableFlightsBetweenCitiesOnDates(string sStartCityCode,
+        [OperationContract(IsOneWay = true)]
+        void getListOfAllFlightsBetweenCities(string sStartCityCode, string sEndCityCode);
+
+        [OperationContract(IsOneWay = true)]
+        void getListOfAllAvailableFlightsBetweenCitiesOnDates(string sStartCityCode,
                                                                     string sEndCityCode,
                                                                     DateTime dtStartDate,
-                                                                    DateTime dtEndDate, 
-                                                                    int numSeats);
-        [OperationContract]
-        bool checkIfAvailable(string sStartCityCode, string sEndCityCode, DateTime dtFlightDate, int iNumSeats);
+                                                                    DateTime dtEndDate);
+        [OperationContract(IsOneWay = true)]
+        void checkIfAvailable(string sStartCityCode, string sEndCityCode, DateTime dtFlightDate, int iNumSeats);
     }
 }

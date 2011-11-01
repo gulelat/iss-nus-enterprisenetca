@@ -17,9 +17,17 @@ namespace FlightService
         private string startCityCode;
         private string endCityName;
         private string endCityCode;
-        private string flightTime;  //todo - change to datetime
+        private DateTime flightTime;  
         private double adultRate;
         private double childRate;
+        private int numSeatsAvailable=0;
+
+        [DataMember(Name="NumSeats")]
+        public int NumSeatsAvailable
+        {
+            get { return numSeatsAvailable; }
+            set { numSeatsAvailable = value; }
+        }
 
         [DataMember(Name="ID")]
         public int RouteID
@@ -64,7 +72,7 @@ namespace FlightService
         }
                
         [DataMember(Name="Departure Time")]  
-        public string FlightTime
+        public DateTime FlightTime
         {
             get { return flightTime; }
             set { flightTime = value; }
