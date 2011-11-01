@@ -29,57 +29,6 @@ namespace Flight.BLL
             return flightDAL.getFlightDALInstance().getAllRoutesBetweenCities(startCityCode, destCityCode);
         }
 
-        //todo - remove the constraint on the number of seats. Send the number of seats available to the client
-        public List<Route> getAvailableFlightBetweenCitiesOnDates(string startCity, string destCity, DateTime startDt, DateTime endDt, int numSeats)
-        {
-            FlightDAOFactory flightDAL = FlightDAOFactory.getInstance();
-            List<Route> lstRoute = flightDAL.getFlightDALInstance().getAllRoutesBetweenCities(startCity, destCity);
-
-            List<Route> lstAvailableRoutes = new List<Route>();
-            DateTime dtFlight = DateTime.Now;
-
-            Route aR;
-            foreach (Route r in lstRoute)
-            {
-                dtFlight = startDt;
-                while (dtFlight < endDt)
-                {
-                    if (getNumSeatsAvailable(r, dtFlight) >= numSeats)
-                    {
-                        aR = new Route();
-                        aR.RouteID = r.RouteID;
-                        aR.AdultFare = r.AdultFare;
-                        aR.ChildFare = r.ChildFare;
-                        aR.Destination = r.Destination;
-                        aR.StartCity = r.StartCity;
-                        aR.EndCity = r.EndCity;
-                        aR.Flight = r.Flight;
-                        aR.FlightTime = dtFlight.ToString("dd MMM yyy ") + r.FlightTime;
-                        lstAvailableRoutes.Add(aR);
-                    }
-                    dtFlight = dtFlight.AddDays(1);
-                }
-            }
-
-            return lstAvailableRoutes;
-        }
-
-        private int getNumSeatsAvailable(Route r, DateTime dtFlight)
-        {
-            FlightDAOFactory flightDAL = FlightDAOFactory.getInstance();
-            int capacity = r.Flight.Capacity;
-
-            //get the list of reservations done for the route on the given date
-            List<Reservation> lstReserve = flightDAL.getFlightDALInstance().getAllReservationsForDateOnRoute(r.RouteID, dtFlight);
-            if (lstReserve == null)
-                return r.Flight.Capacity;
-            
-            int totalCount = 0;
-            foreach (Reservation res in lstReserve)
-                totalCount += res.Passengers.Count();
-            return (capacity - totalCount);
-        }
-
         public bool checkIfAvailable(int iRouteID, DateTime dtFlight, int numSeats)
         {
             FlightDAOFactory flightDAL = FlightDAOFactory.getInstance();
