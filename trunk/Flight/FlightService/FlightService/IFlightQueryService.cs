@@ -8,7 +8,6 @@ using Flight_DAL;
 
 namespace FlightService
 {
-    //TODO - Implement Async retrieval
     [ServiceContract(Namespace = "FlightService", SessionMode = SessionMode.Required,
                  CallbackContract = typeof(IFlightQueryCallback))]
     public interface IFlightQueryService
