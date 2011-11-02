@@ -44,10 +44,7 @@ namespace FlightClientTest
             Console.WriteLine("-------- Displaying Flight Information from the system -------------- ");
             foreach (FlightInfo f in flights)
             {
-                Console.WriteLine("RouteID - {0} => FlightName: {1}, StartCity: {2}({3}), Destination: {4}({5}), Departure Time: {6}, Rate(A/C): {7}/{8}, NumSeats: {9}",
-                    f.ID, f.FlightName, f.StartCity, f.StartCode, 
-                    f.Destination, f.DestinationCode, f.DepartureTime.ToString("dd mmm YYYY HH:MM"), 
-                    f.AdultRate, f.ChildRate, f.NumSeats);
+                Console.WriteLine("FlightInfo - {0}", f.ToString());
             }
             Console.WriteLine(" ------------------------------------------------------------------");
             Console.WriteLine();
