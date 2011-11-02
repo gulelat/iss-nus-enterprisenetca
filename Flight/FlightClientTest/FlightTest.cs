@@ -31,6 +31,8 @@ namespace FlightClientTest
 
             test.proxy.getListOfAllAvailableFlightsBetweenCitiesOnDates(sStart, sEnd, DateTime.Now, DateTime.Now.AddDays(2));
 
+            DateTime dtFlight = DateTime.ParseExact("03 Nov 2011 11:00", "dd MMM yyyy HH:mm", null);
+            test.proxy.checkIfAvailable(sStart, sEnd, dtFlight, 21);
             Console.WriteLine("Press <ENTER> to exit");
             Console.ReadLine();
         }
