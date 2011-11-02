@@ -112,7 +112,7 @@ namespace TestBLL
 
         private void listAvailableRoutesBetweenCitiesOnDates(IFlightBLL flightBLL, string start, string end, DateTime dtStart, DateTime dtEnd, int numSeats)
         {
-            List<Route> lst = flightBLL.getAvailableFlightBetweenCitiesOnDates(start, end, dtStart, dtEnd, numSeats);
+ /*           List<Route> lst = flightBLL.getAvailableFlightBetweenCitiesOnDates(start, end, dtStart, dtEnd, numSeats);
             if (lst != null)
             {
                 Console.WriteLine("------ Listing routes between " + start + " and " + end + " ----- ");
@@ -127,7 +127,7 @@ namespace TestBLL
             else
             {
                 Console.WriteLine("No Routes in the database !!!");
-            }
+            }*/
         }
 
         private string makeReservation(IFlightBLL flightBLL, int iRouteID, DateTime dtFlight, List<Passenger> lstPassengers)
