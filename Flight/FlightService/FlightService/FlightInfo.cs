@@ -96,7 +96,7 @@ namespace FlightService
         public string ToString()
         {
             String sReturn = "RouteID - " + RouteID+ " => FlightName: " + FlightName + ", StartCity: " + StartCityName + "(" + StartCityCode + "), Destination: " +
-                EndCityName+ " (" + EndCityCode + "), Departure Time: " + FlightTime.ToString("dd mmm YYYY HH:MM") +
+                EndCityName+ " (" + EndCityCode + "), Departure Time: " + FlightTime.ToString("dd MMM yyyy HH:mm") +
                 ", Rate(A/C): " + AdultRate + "/" + ChildRate + ", NumSeats: " + NumSeatsAvailable;
             return sReturn;
         }
