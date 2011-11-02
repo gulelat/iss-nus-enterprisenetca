@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBLL", "..\TestBLL\TestB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightService", "..\FlightService\FlightService\FlightService.csproj", "{02061349-B1A6-47F1-B12C-02C81EB3375C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightClientTest", "..\FlightClientTest\FlightClientTest.csproj", "{3519DECF-7924-4F6A-AFB4-136F6ACB2488}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,16 @@ Global
 		{02061349-B1A6-47F1-B12C-02C81EB3375C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{02061349-B1A6-47F1-B12C-02C81EB3375C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{02061349-B1A6-47F1-B12C-02C81EB3375C}.Release|x86.ActiveCfg = Release|Any CPU
+		{3519DECF-7924-4F6A-AFB4-136F6ACB2488}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3519DECF-7924-4F6A-AFB4-136F6ACB2488}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3519DECF-7924-4F6A-AFB4-136F6ACB2488}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3519DECF-7924-4F6A-AFB4-136F6ACB2488}.Debug|x86.ActiveCfg = Debug|x86
+		{3519DECF-7924-4F6A-AFB4-136F6ACB2488}.Debug|x86.Build.0 = Debug|x86
+		{3519DECF-7924-4F6A-AFB4-136F6ACB2488}.Release|Any CPU.ActiveCfg = Release|x86
+		{3519DECF-7924-4F6A-AFB4-136F6ACB2488}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{3519DECF-7924-4F6A-AFB4-136F6ACB2488}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3519DECF-7924-4F6A-AFB4-136F6ACB2488}.Release|x86.ActiveCfg = Release|x86
+		{3519DECF-7924-4F6A-AFB4-136F6ACB2488}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
