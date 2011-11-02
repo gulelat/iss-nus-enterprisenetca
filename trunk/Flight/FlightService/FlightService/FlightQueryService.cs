@@ -116,7 +116,7 @@ namespace FlightService
             }
             else
             {
-                Console.WriteLine("Found - {0} routes", lstRoutes.Count);
+//                Console.WriteLine("Found - {0} routes", lstRoutes.Count);
                 DateTime dtFlight = DateTime.Now;
                 FlightInfo fInfo;
                 string sDate;
@@ -125,7 +125,7 @@ namespace FlightService
                     dtFlight = dtStartDate;
                     while (dtFlight < dtEndDate)
                     {
-                        Console.WriteLine("Checking route {1} for date - {0}", dtFlight.ToString(), r.RouteID);
+//                        Console.WriteLine("Checking route {1} for date - {0}", dtFlight.ToString(), r.RouteID);
                         fInfo = new FlightInfo();
                         fInfo.RouteID = r.RouteID;
                         fInfo.AdultRate = r.AdultFare;
@@ -136,10 +136,9 @@ namespace FlightService
                         fInfo.StartCityName = r.Destination.City;
                         fInfo.FlightName = r.Flight.FlightID;
                         sDate = dtFlight.ToString("dd MMM yyyy ") + r.FlightTime;
-                        Console.WriteLine("Date to be parsed - {0} - {1}, {2}", sDate, dtFlight.ToString(), r.FlightTime);
                         fInfo.FlightTime = DateTime.ParseExact(sDate, "dd MMM yyyy HH:mm", null);    //date+time component
                         fInfo.NumSeatsAvailable = getNumSeatsAvailable(r, fInfo.FlightTime);
-                        Console.WriteLine(fInfo.ToString());
+//                        Console.WriteLine(fInfo.ToString());
                         lstReturn.Add(fInfo);
                         dtFlight = dtFlight.AddDays(1);
                     }
@@ -156,7 +155,7 @@ namespace FlightService
         private int getNumSeatsAvailable(Route r, DateTime dtFlight)
         {
             int capacity = r.Flight.Capacity;
-            Console.WriteLine("Flight capacity - {0}", capacity);
+//            Console.WriteLine("Flight capacity - {0}", capacity);
 
             //get the list of reservations done for the route - includes all the dates
             List<Reservation> lstReserve = r.Reservations.ToList(); 
@@ -170,7 +169,7 @@ namespace FlightService
                 if(DateTime.Compare(rsv.FlightDate, dtFlight) ==0)
                     totalCount += rsv.Passengers.Count();
             }
-            Console.WriteLine("Total reservations found - {0}", totalCount);
+//            Console.WriteLine("Total reservations found - {0}", totalCount);
 
             return (capacity - totalCount);
         }
@@ -185,13 +184,14 @@ namespace FlightService
             }
             if (lstRoutes != null)
             {
+                Console.WriteLine("Found few routes");
                 //check the time of flight
                 Route r = (from ro in lstRoutes
-                           where ro.FlightTime.Equals(dtFlight.ToString("HH:MM"))
+                           where ro.FlightTime.Equals(dtFlight.ToString("HH:mm"))
                            select ro).FirstOrDefault();
                 return r;
             }
-
+            Console.WriteLine("No Route found");
             return null;
         }
 
@@ -214,9 +214,16 @@ namespace FlightService
             }
             else
             {
+                int iReserved;
                 Route r = getRoute(sStartCityCode, sEndCityCode, dtFlightDate);
-                if (getNumSeatsAvailable(r, dtFlightDate) < iNumSeats)
+                Console.WriteLine("Route found - {0}", r.RouteID);
+                iReserved = getNumSeatsAvailable(r, dtFlightDate);
+                Console.WriteLine("Num seats available - {0}", iReserved);
+                if (iReserved < iNumSeats)
+                {
                     callerProxy.onAvailabilityQueryCallback(false); //no seats available for the number requested
+                    return;
+                }
             }
             callerProxy.onAvailabilityQueryCallback(true);  //seats are available. 
         }
