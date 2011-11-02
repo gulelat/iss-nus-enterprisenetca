@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f3322006-8813-448f-932b-b04c06aca84d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:12345/FlightService?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FlightService.xsd" MetadataType="Schema" ID="efe259b7-5fb5-4898-af67-64b135437d72" SourceId="1" SourceUrl="http://localhost:12345/FlightService?xsd=xsd0" />
+    <MetadataFile FileName="FlightService1.xsd" MetadataType="Schema" ID="a15b9529-fb9b-4c28-b0b0-6c61de511606" SourceId="1" SourceUrl="http://localhost:12345/FlightService?xsd=xsd1" />
+    <MetadataFile FileName="FlightService2.xsd" MetadataType="Schema" ID="5ddd056d-398a-49ec-8534-aaad1f1b002d" SourceId="1" SourceUrl="http://localhost:12345/FlightService?xsd=xsd2" />
+    <MetadataFile FileName="FlightService3.xsd" MetadataType="Schema" ID="5ef8532f-1a20-45e9-95ab-5ff22bc15505" SourceId="1" SourceUrl="http://localhost:12345/FlightService?xsd=xsd3" />
+    <MetadataFile FileName="FlightQueryService.wsdl" MetadataType="Wsdl" ID="ff3d5820-692a-4dd2-8232-1c7eb8de3ee1" SourceId="1" SourceUrl="http://localhost:12345/FlightService?wsdl" />
+    <MetadataFile FileName="FlightService.wsdl" MetadataType="Wsdl" ID="a226ba44-a737-4230-bc11-7465779357f1" SourceId="1" SourceUrl="http://localhost:12345/FlightService?wsdl=wsdl0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
