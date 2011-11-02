@@ -92,5 +92,13 @@ namespace FlightService
             get { return childRate; }
             set { childRate = value; }
         }
+
+        public string ToString()
+        {
+            String sReturn = "RouteID - " + RouteID+ " => FlightName: " + FlightName + ", StartCity: " + StartCityName + "(" + StartCityCode + "), Destination: " +
+                EndCityName+ " (" + EndCityCode + "), Departure Time: " + FlightTime.ToString("dd mmm YYYY HH:MM") +
+                ", Rate(A/C): " + AdultRate + "/" + ChildRate + ", NumSeats: " + NumSeatsAvailable;
+            return sReturn;
+        }
     }
 }

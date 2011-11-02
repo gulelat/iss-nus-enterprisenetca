@@ -18,6 +18,7 @@ namespace FlightService
         [OperationBehavior (TransactionScopeRequired=false)]
         public void getListOfDestinations()
         {
+            Console.WriteLine("In getListOfDestinations() function .... ");
             IFlightQueryCallback callerProxy = OperationContext.Current.GetCallbackChannel<IFlightQueryCallback>();
             List<DestinationInfo> lstReturn = new List<DestinationInfo>();
             List<Destination> lstDestination;
@@ -48,8 +49,9 @@ namespace FlightService
          * everyday, and thus the date part of the FlightTime needs to be ignored. 
          **/
         [OperationBehavior(TransactionScopeRequired = false)]
-        void getListOfAllFlightsBetweenCities(string sStartCityCode, string sEndCityCode)
+        public void getListOfAllFlightsBetweenCities(string sStartCityCode, string sEndCityCode)
         {
+            Console.WriteLine("In getListOfAllFlightsBetweenCities({0}, {1}) function... ", sStartCityCode, sEndCityCode);
             IFlightQueryCallback callerProxy = OperationContext.Current.GetCallbackChannel<IFlightQueryCallback>();
             CultureInfo provider = CultureInfo.InvariantCulture;
 
@@ -61,10 +63,12 @@ namespace FlightService
             }
             if (lstRoutes == null)
             {
+                Console.WriteLine("No routes found");
                 callerProxy.onFlightInfoQueryCallback(null);
             }
             else
             {
+                Console.WriteLine("Found - {0} routes", lstRoutes.Count);
                 FlightInfo fInfo;
                 foreach (Route r in lstRoutes)
                 {
@@ -77,10 +81,13 @@ namespace FlightService
                     fInfo.StartCityCode = r.Destination.CityCode;
                     fInfo.StartCityName = r.Destination.City;
                     fInfo.FlightName = r.Flight.FlightID;
-                    fInfo.FlightTime = DateTime.ParseExact(r.FlightTime, "HH:MM", provider);    //only time component
+                    //todo - find why this doesn't work
+//                    fInfo.FlightTime = DateTime.ParseExact(r.FlightTime, "HH:MM", provider);    //only time component
+                    Console.WriteLine(fInfo.ToString());
                     lstReturn.Add(fInfo);
                 }
                 callerProxy.onFlightInfoQueryCallback(lstReturn.ToArray());
+                Console.WriteLine("Returning back");
             }
         }
 
@@ -89,9 +96,12 @@ namespace FlightService
          * component is valid. 
          */
         [OperationBehavior(TransactionScopeRequired = false)]
-        void getListOfAllAvailableFlightsBetweenCitiesOnDates(string sStartCityCode, string sEndCityCode, 
+        public void getListOfAllAvailableFlightsBetweenCitiesOnDates(string sStartCityCode, string sEndCityCode, 
             DateTime dtStartDate, DateTime dtEndDate)
         {
+            Console.WriteLine("In getListOfAllAvailableFlightsBetweenCitiesOnDates({0}, {1}, {2}, {3})", 
+                sStartCityCode, sEndCityCode, dtStartDate.ToString(), dtEndDate.ToString());
+
             IFlightQueryCallback callerProxy = OperationContext.Current.GetCallbackChannel<IFlightQueryCallback>();
             CultureInfo provider = CultureInfo.InvariantCulture;
 
@@ -185,8 +195,9 @@ namespace FlightService
          * Assumes that the dtFlightDate includes both date and time of flight
          */
         [OperationBehavior(TransactionScopeRequired = false)]
-        void checkIfAvailable(string sStartCityCode, string sEndCityCode, DateTime dtFlightDate, int iNumSeats)
+        public void checkIfAvailable(string sStartCityCode, string sEndCityCode, DateTime dtFlightDate, int iNumSeats)
         {
+            Console.WriteLine("In checkIfAvailable({0}, {1}, {2}, {3}) .... ", sStartCityCode, sEndCityCode, dtFlightDate.ToString(), iNumSeats);
             IFlightQueryCallback callerProxy = OperationContext.Current.GetCallbackChannel<IFlightQueryCallback>();
             List<Flight_DAL.Route> lstRoutes;
             lock (this)
@@ -207,8 +218,9 @@ namespace FlightService
         }
 
         [OperationBehavior(TransactionScopeRequired = false)]
-        void getAllFlightIDs(string sStartCityCode, string sEndCityCode)
+        public void getAllFlightIDs(string sStartCityCode, string sEndCityCode)
         {
+            Console.WriteLine("In getAllFlightIDs({0}, {1})", sStartCityCode, sEndCityCode);
             IFlightQueryCallback callerProxy = OperationContext.Current.GetCallbackChannel<IFlightQueryCallback>();
             List<Flight_DAL.Route> lstRoutes;
             lock (this)
