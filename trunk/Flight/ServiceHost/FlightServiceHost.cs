@@ -16,7 +16,7 @@ namespace FlightServiceHost
 
             try
             {
-                sh = new ServiceHost(typeof(FlightService));
+                sh = new ServiceHost(typeof(FlightQueryService));
                 sh.Open();
 
                 Console.WriteLine("Press enter to stop server");
