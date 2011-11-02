@@ -29,6 +29,8 @@ namespace FlightClientTest
 
             test.proxy.getListOfAllFlightsBetweenCities(sStart, sEnd);
 
+            test.proxy.getListOfAllAvailableFlightsBetweenCitiesOnDates(sStart, sEnd, DateTime.Now, DateTime.Now.AddDays(2));
+
             Console.WriteLine("Press <ENTER> to exit");
             Console.ReadLine();
         }
