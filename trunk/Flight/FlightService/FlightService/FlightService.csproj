@@ -45,11 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DestinationInfo.cs" />
+    <Compile Include="FlightBookingService.cs" />
     <Compile Include="FlightInfo.cs" />
     <Compile Include="FlightQueryService.cs" />
     <Compile Include="IFlightBookingService.cs" />
     <Compile Include="IFlightQueryCallback.cs" />
     <Compile Include="IFlightQueryService.cs" />
+    <Compile Include="PassengerInfo.cs" />
+    <Compile Include="PaymentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

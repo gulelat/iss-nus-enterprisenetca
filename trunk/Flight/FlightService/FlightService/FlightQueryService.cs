@@ -184,14 +184,12 @@ namespace FlightService
             }
             if (lstRoutes != null)
             {
-                Console.WriteLine("Found few routes");
-                //check the time of flight
+                 //check the time of flight
                 Route r = (from ro in lstRoutes
                            where ro.FlightTime.Equals(dtFlight.ToString("HH:mm"))
                            select ro).FirstOrDefault();
                 return r;
             }
-            Console.WriteLine("No Route found");
             return null;
         }
 
@@ -216,13 +214,18 @@ namespace FlightService
             {
                 int iReserved;
                 Route r = getRoute(sStartCityCode, sEndCityCode, dtFlightDate);
-                Console.WriteLine("Route found - {0}", r.RouteID);
-                iReserved = getNumSeatsAvailable(r, dtFlightDate);
-                Console.WriteLine("Num seats available - {0}", iReserved);
-                if (iReserved < iNumSeats)
+                if (r == null)
                 {
-                    callerProxy.onAvailabilityQueryCallback(false); //no seats available for the number requested
-                    return;
+                    callerProxy.onAvailabilityQueryCallback(false); // no seats available, as no route found
+                }
+                else
+                {
+                    iReserved = getNumSeatsAvailable(r, dtFlightDate);
+                    if (iReserved < iNumSeats)
+                    {
+                        callerProxy.onAvailabilityQueryCallback(false); //no seats available for the number requested
+                        return;
+                    }
                 }
             }
             callerProxy.onAvailabilityQueryCallback(true);  //seats are available. 
