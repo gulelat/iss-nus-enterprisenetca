@@ -9,9 +9,9 @@ using System.Globalization;
 
 namespace FlightService
 {
-    [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single,
-                        ConcurrencyMode=ConcurrencyMode.Multiple)]
-    public class FlightQueryService :IFlightQueryService
+    [ServiceBehavior(InstanceContextMode=InstanceContextMode.PerSession,
+                        ConcurrencyMode=ConcurrencyMode.Single)]
+    public partial class FlightQueryService :IFlightQueryService
     {
         private FlightBLLFacade myFlightBLL=new FlightBLLFacade();
 

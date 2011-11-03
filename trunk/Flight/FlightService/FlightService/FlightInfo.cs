@@ -93,7 +93,7 @@ namespace FlightService
             set { childRate = value; }
         }
 
-        public string ToString()
+        public override string ToString()
         {
             String sReturn = "RouteID - " + RouteID+ " => FlightName: " + FlightName + ", StartCity: " + StartCityName + "(" + StartCityCode + "), Destination: " +
                 EndCityName+ " (" + EndCityCode + "), Departure Time: " + FlightTime.ToString("dd MMM yyyy HH:mm") +

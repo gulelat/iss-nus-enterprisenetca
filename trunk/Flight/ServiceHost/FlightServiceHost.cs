@@ -22,9 +22,9 @@ namespace FlightServiceHost
                 Console.WriteLine("Press enter to stop server");
                 Console.ReadLine();
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("Exception");
+                Console.WriteLine("Exception - "+e.Message);
             }
             finally
             {
