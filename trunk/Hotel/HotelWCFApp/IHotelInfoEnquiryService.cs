@@ -15,16 +15,18 @@ namespace HotelWCFApp
     {
 
         [OperationContract]
-         List<RoomInfo> getAllRoomInfos();
+        [FaultContract(typeof(Exception))]
+        List<RoomInfo> getAllRoomInfos();
 
-         [OperationContract]
-         Boolean checkRoomAvailability(string roomNo, string startDateStr, int duration);
+        [OperationContract]
+        [FaultContract(typeof(Exception))]
+        Boolean checkRoomAvailability(string roomNo, string startDateStr, int duration);
 
-       
 
-       
+
+
     }
 
 
-  
+
 }

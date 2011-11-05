@@ -21,7 +21,7 @@ namespace HotelWCFApp
         {
             try
             {
-                HotelFacade hotelFacade = new HotelFacade();
+                var hotelFacade = new HotelFacade();
                 List<Room> rooms = hotelFacade.getAllRooms();
                 if (rooms != null && rooms.Count > 0)
                 {
@@ -48,8 +48,6 @@ namespace HotelWCFApp
             {
                 throw new FaultException<Exception>(e);
             }
-
-
         }
 
 
@@ -67,7 +65,6 @@ namespace HotelWCFApp
            {
                throw new FaultException<Exception>(e);
            }
-
        }
 
     }

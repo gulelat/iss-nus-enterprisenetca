@@ -72,6 +72,7 @@
     <Compile Include="datacontract\RoomInfo.cs" />
     <Compile Include="HotelDataInfoUpdate.svc.cs">
       <DependentUpon>HotelDataInfoUpdate.svc</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="HotelInfoEnquiryService.svc.cs">
       <DependentUpon>HotelInfoEnquiryService.svc</DependentUpon>
