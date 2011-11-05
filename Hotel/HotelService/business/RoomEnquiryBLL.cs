@@ -3,29 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HotelService.business{
+namespace HotelService.business
+{
 
 
 
 
     class RoomEnquiryBLL : HotelService.business.IRoomEnquiryBLL
     {
+        /// <summary>
+        /// Get roorms
+        /// </summary>
+        /// <returns></returns>
         public List<Room> getAllRooms()
         {
 
-
             using (HotelDBEntities hotelDBEntities = new HotelDBEntities())
             {
-                List<Room> rooms = hotelDBEntities.Rooms.ToList();
+                var query = from it in hotelDBEntities.Rooms.Include("RoomType")
+                            where it.RoomType != null
+                            select it;
 
-                return rooms;
+                var list = query.ToList();
+                foreach (var item in list)
+                {
+                    item.RoomTypeReference.Load();
+                }
+
+                return list;
             }
         }
 
-
-
-
-
+        /// <summary>
+        /// Check room
+        /// </summary>
+        /// <param name="roomNo"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
         public Boolean checkRoomAvailability(String roomNo, DateTime startDate, DateTime endDate)
         {
             Boolean isAvailable = true;
@@ -38,11 +53,8 @@ namespace HotelService.business{
                 reservations = result.ToList();
             }
 
-
             if (reservations != null)
             {
-
-
                 foreach (RoomReservation reservation in reservations)
                 {
                     if (DateTime.Compare(reservation.StartDate, endDate) > 0 || DateTime.Compare(reservation.EndDate, startDate) < 0)
@@ -52,9 +64,6 @@ namespace HotelService.business{
                         break;
                     }
                 }
-
-
-
             }
 
             return isAvailable;
