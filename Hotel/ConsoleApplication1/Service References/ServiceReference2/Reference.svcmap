@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="05c588f8-0459-47a0-8f6c-2810025c6656" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1073/HotelDataInfoUpdate.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="HotelDataInfoUpdate.xsd" MetadataType="Schema" ID="d40b021d-3cf8-4901-abba-c423d8aa9c18" SourceId="1" SourceUrl="http://localhost:1073/HotelDataInfoUpdate.svc?xsd=xsd1" />
+    <MetadataFile FileName="HotelDataInfoUpdate.wsdl" MetadataType="Wsdl" ID="1dcd71bd-2431-4a56-a196-6fd43f7a6fee" SourceId="1" SourceUrl="http://localhost:1073/HotelDataInfoUpdate.svc?wsdl" />
+    <MetadataFile FileName="HotelDataInfoUpdate1.xsd" MetadataType="Schema" ID="69974dc4-351f-4b37-8eec-71cbb17c367a" SourceId="1" SourceUrl="http://localhost:1073/HotelDataInfoUpdate.svc?xsd=xsd2" />
+    <MetadataFile FileName="HotelDataInfoUpdate.disco" MetadataType="Disco" ID="f945483c-0f55-4bee-a5cd-bf45cef9092b" SourceId="1" SourceUrl="http://localhost:1073/HotelDataInfoUpdate.svc?disco" />
+    <MetadataFile FileName="HotelDataInfoUpdate2.xsd" MetadataType="Schema" ID="4e8daf84-cf4e-4e43-b21a-8c52461274aa" SourceId="1" SourceUrl="http://localhost:1073/HotelDataInfoUpdate.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

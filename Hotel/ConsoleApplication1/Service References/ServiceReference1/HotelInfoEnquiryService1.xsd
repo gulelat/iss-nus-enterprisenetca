@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DataInfo" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DataInfo" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfRoomInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoomInfo" nillable="true" type="tns:RoomInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoomInfo" nillable="true" type="tns:ArrayOfRoomInfo" />
+  <xs:complexType name="RoomInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="capacity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dailyCharge" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="roomNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="roomType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RoomInfo" nillable="true" type="tns:RoomInfo" />
+</xs:schema>

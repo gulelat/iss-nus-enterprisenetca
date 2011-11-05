@@ -1,0 +1,16 @@
+C:\code\ASP.NET\HotelService\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\code\ASP.NET\HotelService\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\code\ASP.NET\HotelService\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\code\ASP.NET\HotelService\ConsoleApplication1\bin\Debug\HotelService.exe
+C:\code\ASP.NET\HotelService\ConsoleApplication1\bin\Debug\HotelService.pdb
+C:\code\ASP.NET\HotelService\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+C:\code\ASP.NET\HotelService\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+C:\code\ASP.NET\HotelService\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\bin\Debug\HotelService.dll
+C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\bin\Debug\HotelService.pdb
+C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
