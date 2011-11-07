@@ -1,0 +1,1 @@
+CSC /r:System.ServiceModel.dll,WcfFlightService.dll,Flight_BLL.dll,Flight_DLL.dll  /t:exe /out:FlightQueryHost.exe FlightQueryHost.cs

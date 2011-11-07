@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WcfFlightService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfFlightService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfPassengerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PassengerInfo" nillable="true" type="tns:PassengerInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPassengerInfo" nillable="true" type="tns:ArrayOfPassengerInfo" />
+  <xs:complexType name="PassengerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="expiryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="passengerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="passportNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PassengerInfo" nillable="true" type="tns:PassengerInfo" />
+  <xs:complexType name="PaymentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cardholdername" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cardname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cv2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="expiryDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentInfo" nillable="true" type="tns:PaymentInfo" />
+</xs:schema>
