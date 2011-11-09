@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9E771DE3-D2E9-4DE0-8208-E1136B10F7B1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TA.Window</RootNamespace>
+    <AssemblyName>TA.Window</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FlightQueryCallback.cs" />
+    <Compile Include="frmFlightService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFlightService.Designer.cs">
+      <DependentUpon>frmFlightService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHotelService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHotelService.Designer.cs">
+      <DependentUpon>frmHotelService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDIParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIParent.Designer.cs">
+      <DependentUpon>MDIParent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\FBooking\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\FService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\HBooking\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\HService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmFlightService.resx">
+      <DependentUpon>frmFlightService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHotelService.resx">
+      <DependentUpon>frmHotelService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIParent.resx">
+      <DependentUpon>MDIParent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\FBooking\service.wsdl" />
+    <None Include="Service References\FBooking\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FBooking\WcfFlightService.wsdl" />
+    <None Include="Service References\FBooking\WcfFlightService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FBooking\WcfFlightService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FService\FlightQueryService.wsdl" />
+    <None Include="Service References\FService\FlightService.wsdl" />
+    <None Include="Service References\FService\FlightService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FService\FlightService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FService\FlightService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FService\FlightService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HBooking\HotelDataInfoUpdate.wsdl" />
+    <None Include="Service References\HBooking\HotelDataInfoUpdate.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HBooking\HotelDataInfoUpdate1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HBooking\HotelDataInfoUpdate2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HService\HotelInfoEnquiryService.wsdl" />
+    <None Include="Service References\HService\HotelInfoEnquiryService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HService\HotelInfoEnquiryService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HService\HotelInfoEnquiryService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HService\HotelInfoEnquiryService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HService\TA.Window.HService.RoomInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FBooking\" />
+    <WCFMetadataStorage Include="Service References\FService\" />
+    <WCFMetadataStorage Include="Service References\HBooking\" />
+    <WCFMetadataStorage Include="Service References\HService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FBooking\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FBooking\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FBooking\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FService\FlightService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HService\HotelInfoEnquiryService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HBooking\HotelDataInfoUpdate.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HBooking\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HBooking\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HBooking\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
