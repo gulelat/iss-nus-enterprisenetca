@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="90b8af52-31d2-45ed-9399-216ab2e663d9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1073/HotelInfoEnquiryService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="HotelInfoEnquiryService.xsd" MetadataType="Schema" ID="d5d35086-ee16-4112-9437-82a67432e967" SourceId="1" SourceUrl="http://localhost:1073/HotelInfoEnquiryService.svc?xsd=xsd1" />
+    <MetadataFile FileName="HotelInfoEnquiryService.wsdl" MetadataType="Wsdl" ID="f6a0787d-ee26-43d6-b72e-e0bcd3c7a720" SourceId="1" SourceUrl="http://localhost:1073/HotelInfoEnquiryService.svc?wsdl" />
+    <MetadataFile FileName="HotelInfoEnquiryService1.xsd" MetadataType="Schema" ID="6092173f-f9ca-44b0-9dd6-edfb309aa095" SourceId="1" SourceUrl="http://localhost:1073/HotelInfoEnquiryService.svc?xsd=xsd0" />
+    <MetadataFile FileName="HotelInfoEnquiryService.disco" MetadataType="Disco" ID="45170e9e-2bd8-4102-b0a1-b7ad5fe7c41e" SourceId="1" SourceUrl="http://localhost:1073/HotelInfoEnquiryService.svc?disco" />
+    <MetadataFile FileName="HotelInfoEnquiryService2.xsd" MetadataType="Schema" ID="e425cd5b-15a6-4e46-b901-d3d05421880f" SourceId="1" SourceUrl="http://localhost:1073/HotelInfoEnquiryService.svc?xsd=xsd2" />
+    <MetadataFile FileName="HotelInfoEnquiryService3.xsd" MetadataType="Schema" ID="f0ccef54-14c0-4d95-a3a3-d2ed2c705e5f" SourceId="1" SourceUrl="http://localhost:1073/HotelInfoEnquiryService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
