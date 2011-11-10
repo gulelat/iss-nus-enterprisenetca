@@ -18,8 +18,8 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("TourAgencyModel", "PackageBooking", "Package", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TA.DAL.Package), "Booking", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TA.DAL.Booking))]
-[assembly: EdmRelationshipAttribute("TourAgencyModel", "BookingPassenger", "Booking", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TA.DAL.Booking), "Passenger", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TA.DAL.Passenger))]
+[assembly: EdmRelationshipAttribute("TourAgencyModel", "FK_BookingPassenger", "Booking", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TA.DAL.Booking), "Passenger", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TA.DAL.Passenger), true)]
+[assembly: EdmRelationshipAttribute("TourAgencyModel", "FK_PackageBooking", "Package", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TA.DAL.Package), "Booking", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TA.DAL.Booking), true)]
 
 #endregion
 
@@ -74,22 +74,6 @@ namespace TA.DAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Package> Packages
-        {
-            get
-            {
-                if ((_Packages == null))
-                {
-                    _Packages = base.CreateObjectSet<Package>("Packages");
-                }
-                return _Packages;
-            }
-        }
-        private ObjectSet<Package> _Packages;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Booking> Bookings
         {
             get
@@ -102,6 +86,22 @@ namespace TA.DAL
             }
         }
         private ObjectSet<Booking> _Bookings;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Package> Packages
+        {
+            get
+            {
+                if ((_Packages == null))
+                {
+                    _Packages = base.CreateObjectSet<Package>("Packages");
+                }
+                return _Packages;
+            }
+        }
+        private ObjectSet<Package> _Packages;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -139,19 +139,19 @@ namespace TA.DAL
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Packages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToPackages(Package package)
-        {
-            base.AddObject("Packages", package);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Bookings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToBookings(Booking booking)
         {
             base.AddObject("Bookings", booking);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Packages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPackages(Package package)
+        {
+            base.AddObject("Packages", package);
         }
     
         /// <summary>
@@ -194,12 +194,14 @@ namespace TA.DAL
         /// <param name="packageCode">Initial value of the PackageCode property.</param>
         /// <param name="bookingCode">Initial value of the BookingCode property.</param>
         /// <param name="startDate">Initial value of the StartDate property.</param>
-        public static Booking CreateBooking(global::System.Int32 packageCode, global::System.Int32 bookingCode, global::System.DateTime startDate)
+        /// <param name="package_Code">Initial value of the Package_Code property.</param>
+        public static Booking CreateBooking(global::System.Int32 packageCode, global::System.Int32 bookingCode, global::System.DateTime startDate, global::System.Int32 package_Code)
         {
             Booking booking = new Booking();
             booking.PackageCode = packageCode;
             booking.BookingCode = bookingCode;
             booking.StartDate = startDate;
+            booking.Package_Code = package_Code;
             return booking;
         }
 
@@ -280,6 +282,30 @@ namespace TA.DAL
         private global::System.DateTime _StartDate;
         partial void OnStartDateChanging(global::System.DateTime value);
         partial void OnStartDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Package_Code
+        {
+            get
+            {
+                return _Package_Code;
+            }
+            set
+            {
+                OnPackage_CodeChanging(value);
+                ReportPropertyChanging("Package_Code");
+                _Package_Code = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Package_Code");
+                OnPackage_CodeChanged();
+            }
+        }
+        private global::System.Int32 _Package_Code;
+        partial void OnPackage_CodeChanging(global::System.Int32 value);
+        partial void OnPackage_CodeChanged();
 
         #endregion
     
@@ -291,16 +317,38 @@ namespace TA.DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TourAgencyModel", "PackageBooking", "Package")]
+        [EdmRelationshipNavigationPropertyAttribute("TourAgencyModel", "FK_BookingPassenger", "Passenger")]
+        public EntityCollection<Passenger> Passengers
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Passenger>("TourAgencyModel.FK_BookingPassenger", "Passenger");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Passenger>("TourAgencyModel.FK_BookingPassenger", "Passenger", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TourAgencyModel", "FK_PackageBooking", "Package")]
         public Package Package
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Package>("TourAgencyModel.PackageBooking", "Package").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Package>("TourAgencyModel.FK_PackageBooking", "Package").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Package>("TourAgencyModel.PackageBooking", "Package").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Package>("TourAgencyModel.FK_PackageBooking", "Package").Value = value;
             }
         }
         /// <summary>
@@ -312,35 +360,13 @@ namespace TA.DAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Package>("TourAgencyModel.PackageBooking", "Package");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Package>("TourAgencyModel.FK_PackageBooking", "Package");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Package>("TourAgencyModel.PackageBooking", "Package", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TourAgencyModel", "BookingPassenger", "Passenger")]
-        public EntityCollection<Passenger> Passengers
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Passenger>("TourAgencyModel.BookingPassenger", "Passenger");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Passenger>("TourAgencyModel.BookingPassenger", "Passenger", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Package>("TourAgencyModel.FK_PackageBooking", "Package", value);
                 }
             }
         }
@@ -367,7 +393,9 @@ namespace TA.DAL
         /// <param name="capacity">Initial value of the Capacity property.</param>
         /// <param name="hotelId">Initial value of the HotelId property.</param>
         /// <param name="flightId">Initial value of the FlightId property.</param>
-        public static Package CreatePackage(global::System.Int32 code, global::System.String name, global::System.Int32 duration, global::System.Int32 capacity, global::System.String hotelId, global::System.String flightId)
+        /// <param name="from">Initial value of the From property.</param>
+        /// <param name="to">Initial value of the To property.</param>
+        public static Package CreatePackage(global::System.Int32 code, global::System.String name, global::System.Int32 duration, global::System.Int32 capacity, global::System.String hotelId, global::System.String flightId, global::System.String from, global::System.String to)
         {
             Package package = new Package();
             package.Code = code;
@@ -376,6 +404,8 @@ namespace TA.DAL
             package.Capacity = capacity;
             package.HotelId = hotelId;
             package.FlightId = flightId;
+            package.From = from;
+            package.To = to;
             return package;
         }
 
@@ -528,6 +558,54 @@ namespace TA.DAL
         private global::System.String _FlightId;
         partial void OnFlightIdChanging(global::System.String value);
         partial void OnFlightIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String From
+        {
+            get
+            {
+                return _From;
+            }
+            set
+            {
+                OnFromChanging(value);
+                ReportPropertyChanging("From");
+                _From = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("From");
+                OnFromChanged();
+            }
+        }
+        private global::System.String _From;
+        partial void OnFromChanging(global::System.String value);
+        partial void OnFromChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String To
+        {
+            get
+            {
+                return _To;
+            }
+            set
+            {
+                OnToChanging(value);
+                ReportPropertyChanging("To");
+                _To = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("To");
+                OnToChanged();
+            }
+        }
+        private global::System.String _To;
+        partial void OnToChanging(global::System.String value);
+        partial void OnToChanged();
 
         #endregion
     
@@ -539,18 +617,18 @@ namespace TA.DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TourAgencyModel", "PackageBooking", "Booking")]
+        [EdmRelationshipNavigationPropertyAttribute("TourAgencyModel", "FK_PackageBooking", "Booking")]
         public EntityCollection<Booking> Bookings
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Booking>("TourAgencyModel.PackageBooking", "Booking");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Booking>("TourAgencyModel.FK_PackageBooking", "Booking");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Booking>("TourAgencyModel.PackageBooking", "Booking", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Booking>("TourAgencyModel.FK_PackageBooking", "Booking", value);
                 }
             }
         }
@@ -574,12 +652,14 @@ namespace TA.DAL
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="passport">Initial value of the Passport property.</param>
-        public static Passenger CreatePassenger(global::System.Int32 id, global::System.String name, global::System.String passport)
+        /// <param name="booking_BookingCode">Initial value of the Booking_BookingCode property.</param>
+        public static Passenger CreatePassenger(global::System.Int32 id, global::System.String name, global::System.String passport, global::System.Int32 booking_BookingCode)
         {
             Passenger passenger = new Passenger();
             passenger.Id = id;
             passenger.Name = name;
             passenger.Passport = passport;
+            passenger.Booking_BookingCode = booking_BookingCode;
             return passenger;
         }
 
@@ -660,6 +740,30 @@ namespace TA.DAL
         private global::System.String _Passport;
         partial void OnPassportChanging(global::System.String value);
         partial void OnPassportChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Booking_BookingCode
+        {
+            get
+            {
+                return _Booking_BookingCode;
+            }
+            set
+            {
+                OnBooking_BookingCodeChanging(value);
+                ReportPropertyChanging("Booking_BookingCode");
+                _Booking_BookingCode = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Booking_BookingCode");
+                OnBooking_BookingCodeChanged();
+            }
+        }
+        private global::System.Int32 _Booking_BookingCode;
+        partial void OnBooking_BookingCodeChanging(global::System.Int32 value);
+        partial void OnBooking_BookingCodeChanged();
 
         #endregion
     
@@ -671,16 +775,16 @@ namespace TA.DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TourAgencyModel", "BookingPassenger", "Booking")]
+        [EdmRelationshipNavigationPropertyAttribute("TourAgencyModel", "FK_BookingPassenger", "Booking")]
         public Booking Booking
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Booking>("TourAgencyModel.BookingPassenger", "Booking").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Booking>("TourAgencyModel.FK_BookingPassenger", "Booking").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Booking>("TourAgencyModel.BookingPassenger", "Booking").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Booking>("TourAgencyModel.FK_BookingPassenger", "Booking").Value = value;
             }
         }
         /// <summary>
@@ -692,13 +796,13 @@ namespace TA.DAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Booking>("TourAgencyModel.BookingPassenger", "Booking");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Booking>("TourAgencyModel.FK_BookingPassenger", "Booking");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Booking>("TourAgencyModel.BookingPassenger", "Booking", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Booking>("TourAgencyModel.FK_BookingPassenger", "Booking", value);
                 }
             }
         }

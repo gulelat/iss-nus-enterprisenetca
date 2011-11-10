@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
@@ -60,6 +61,12 @@
     </Compile>
     <Compile Include="frmHotelService.Designer.cs">
       <DependentUpon>frmHotelService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPackageService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPackageService.Designer.cs">
+      <DependentUpon>frmPackageService.cs</DependentUpon>
     </Compile>
     <Compile Include="MDIParent.cs">
       <SubType>Form</SubType>
@@ -94,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmHotelService.resx">
       <DependentUpon>frmHotelService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPackageService.resx">
+      <DependentUpon>frmPackageService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDIParent.resx">
       <DependentUpon>MDIParent.cs</DependentUpon>
@@ -234,6 +244,16 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TA.BLL\TA.BLL.csproj">
+      <Project>{419F5B0A-013E-4EF9-8338-7BD08AA2FE72}</Project>
+      <Name>TA.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TA.DAL\TA.DAL.csproj">
+      <Project>{BA0362ED-6755-415D-BEBE-ED2081A173A6}</Project>
+      <Name>TA.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

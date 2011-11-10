@@ -57,7 +57,10 @@ namespace TA.Window
 
         private void packageBookingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmPackageService childForm = new frmPackageService();
+            childForm.MdiParent = this;
+            childForm.Text = childForm.Text;
+            childForm.Show();
         }
     }
 }

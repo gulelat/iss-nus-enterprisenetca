@@ -5,205 +5,215 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="TourAgencyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-  <EntityContainer Name="TourAgencyModelStoreContainer">
-    <EntitySet Name="Packages" EntityType="TourAgencyModel.Store.Packages" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Bookings" EntityType="TourAgencyModel.Store.Bookings" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Passengers" EntityType="TourAgencyModel.Store.Passengers" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Users" EntityType="TourAgencyModel.Store.Users" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="PackageBooking" Association="TourAgencyModel.Store.PackageBooking">
-      <End Role="Package" EntitySet="Packages" />
-      <End Role="Booking" EntitySet="Bookings" />
-    </AssociationSet>
-    <AssociationSet Name="BookingPassenger" Association="TourAgencyModel.Store.BookingPassenger">
-      <End Role="Booking" EntitySet="Bookings" />
-      <End Role="Passenger" EntitySet="Passengers" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Packages">
-    <Key>
-      <PropertyRef Name="Code" />
-    </Key>
-    <Property Name="Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Duration" Type="int" Nullable="false" />
-    <Property Name="Capacity" Type="int" Nullable="false" />
-    <Property Name="HotelId" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FlightId" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Bookings">
-    <Key>
-      <PropertyRef Name="BookingCode" />
-    </Key>
-    <Property Name="PackageCode" Type="int" Nullable="false" />
-    <Property Name="BookingCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StartDate" Type="datetime" Nullable="false" />
-    <Property Name="Package_Code" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Passengers">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Passport" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Booking_BookingCode" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <Association Name="PackageBooking">
-    <End Role="Package" Type="TourAgencyModel.Store.Packages" Multiplicity="1" />
-    <End Role="Booking" Type="TourAgencyModel.Store.Bookings" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Package">
-        <PropertyRef Name="Code" />
-      </Principal>
-      <Dependent Role="Booking">
-        <PropertyRef Name="Package_Code" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="BookingPassenger">
-    <End Role="Booking" Type="TourAgencyModel.Store.Bookings" Multiplicity="1" />
-    <End Role="Passenger" Type="TourAgencyModel.Store.Passengers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Booking">
-        <PropertyRef Name="BookingCode" />
-      </Principal>
-      <Dependent Role="Passenger">
-        <PropertyRef Name="Booking_BookingCode" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+        <EntityContainer Name="TourAgencyModelStoreContainer">
+          <EntitySet Name="Bookings" EntityType="TourAgencyModel.Store.Bookings" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Packages" EntityType="TourAgencyModel.Store.Packages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Passengers" EntityType="TourAgencyModel.Store.Passengers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="TourAgencyModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_BookingPassenger" Association="TourAgencyModel.Store.FK_BookingPassenger">
+            <End Role="Bookings" EntitySet="Bookings" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageBooking" Association="TourAgencyModel.Store.FK_PackageBooking">
+            <End Role="Packages" EntitySet="Packages" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bookings">
+          <Key>
+            <PropertyRef Name="BookingCode" />
+          </Key>
+          <Property Name="PackageCode" Type="int" Nullable="false" />
+          <Property Name="BookingCode" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="Package_Code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Packages">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="Capacity" Type="int" Nullable="false" />
+          <Property Name="HotelId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FlightId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="From" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="To" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Passengers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Passport" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Booking_BookingCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BookingPassenger">
+          <End Role="Bookings" Type="TourAgencyModel.Store.Bookings" Multiplicity="1" />
+          <End Role="Passengers" Type="TourAgencyModel.Store.Passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bookings">
+              <PropertyRef Name="BookingCode" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="Booking_BookingCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageBooking">
+          <End Role="Packages" Type="TourAgencyModel.Store.Packages" Multiplicity="1" />
+          <End Role="Bookings" Type="TourAgencyModel.Store.Bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Packages">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="Package_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="TourAgencyModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityContainer Name="TourAgencyModelContainer" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Packages" EntityType="TourAgencyModel.Package" />
           <EntitySet Name="Bookings" EntityType="TourAgencyModel.Booking" />
+          <EntitySet Name="Packages" EntityType="TourAgencyModel.Package" />
           <EntitySet Name="Passengers" EntityType="TourAgencyModel.Passenger" />
-          <AssociationSet Name="PackageBooking" Association="TourAgencyModel.PackageBooking">
-            <End Role="Package" EntitySet="Packages" />
-            <End Role="Booking" EntitySet="Bookings" />
-          </AssociationSet>
-          <AssociationSet Name="BookingPassenger" Association="TourAgencyModel.BookingPassenger">
+          <EntitySet Name="Users" EntityType="TourAgencyModel.User" />
+          <AssociationSet Name="FK_BookingPassenger" Association="TourAgencyModel.FK_BookingPassenger">
             <End Role="Booking" EntitySet="Bookings" />
             <End Role="Passenger" EntitySet="Passengers" />
           </AssociationSet>
-          <EntitySet Name="Users" EntityType="TourAgencyModel.User" />
+          <AssociationSet Name="FK_PackageBooking" Association="TourAgencyModel.FK_PackageBooking">
+            <End Role="Package" EntitySet="Packages" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="BookingCode" />
+          </Key>
+          <Property Type="Int32" Name="PackageCode" Nullable="false" />
+          <Property Type="Int32" Name="BookingCode" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" />
+          <Property Type="Int32" Name="Package_Code" Nullable="false" />
+          <NavigationProperty Name="Passengers" Relationship="TourAgencyModel.FK_BookingPassenger" FromRole="Booking" ToRole="Passenger" />
+          <NavigationProperty Name="Package" Relationship="TourAgencyModel.FK_PackageBooking" FromRole="Booking" ToRole="Package" />
+        </EntityType>
         <EntityType Name="Package">
           <Key>
             <PropertyRef Name="Code" />
           </Key>
           <Property Type="Int32" Name="Code" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="Duration" Nullable="false" />
           <Property Type="Int32" Name="Capacity" Nullable="false" />
-          <Property Type="String" Name="HotelId" Nullable="false" />
-          <Property Type="String" Name="FlightId" Nullable="false" />
-          <NavigationProperty Name="Bookings" Relationship="TourAgencyModel.PackageBooking" FromRole="Package" ToRole="Booking" />
-        </EntityType>
-        <EntityType Name="Booking">
-          <Key>
-            <PropertyRef Name="BookingCode" />
-          </Key>
-          <Property Type="Int32" Name="PackageCode" Nullable="false" annotation:StoreGeneratedPattern="None" />
-          <Property Type="Int32" Name="BookingCode" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="StartDate" Nullable="false" />
-          <NavigationProperty Name="Package" Relationship="TourAgencyModel.PackageBooking" FromRole="Booking" ToRole="Package" />
-          <NavigationProperty Name="Passengers" Relationship="TourAgencyModel.BookingPassenger" FromRole="Booking" ToRole="Passenger" />
+          <Property Type="String" Name="HotelId" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FlightId" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="From" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="To" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bookings" Relationship="TourAgencyModel.FK_PackageBooking" FromRole="Package" ToRole="Booking" />
         </EntityType>
         <EntityType Name="Passenger">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" />
-          <Property Type="String" Name="Passport" Nullable="false" />
-          <NavigationProperty Name="Booking" Relationship="TourAgencyModel.BookingPassenger" FromRole="Passenger" ToRole="Booking" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Passport" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Booking_BookingCode" Nullable="false" />
+          <NavigationProperty Name="Booking" Relationship="TourAgencyModel.FK_BookingPassenger" FromRole="Passenger" ToRole="Booking" />
         </EntityType>
-        <Association Name="PackageBooking">
-          <End Type="TourAgencyModel.Package" Role="Package" Multiplicity="1" />
-          <End Type="TourAgencyModel.Booking" Role="Booking" Multiplicity="*" />
-        </Association>
-        <Association Name="BookingPassenger">
-          <End Type="TourAgencyModel.Booking" Role="Booking" Multiplicity="1" />
-          <End Type="TourAgencyModel.Passenger" Role="Passenger" Multiplicity="*" />
-        </Association>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
           <Property Type="Int32" Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Password" Nullable="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-      </Schema>
+        <Association Name="FK_BookingPassenger">
+          <End Type="TourAgencyModel.Booking" Role="Booking" Multiplicity="1" />
+          <End Type="TourAgencyModel.Passenger" Role="Passenger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking">
+              <PropertyRef Name="BookingCode" />
+            </Principal>
+            <Dependent Role="Passenger">
+              <PropertyRef Name="Booking_BookingCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageBooking">
+          <End Type="TourAgencyModel.Package" Role="Package" Multiplicity="1" />
+          <End Type="TourAgencyModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Package">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="Package_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="TourAgencyModelStoreContainer" CdmEntityContainer="TourAgencyModelContainer">
-    <EntitySetMapping Name="Packages">
-      <EntityTypeMapping TypeName="IsTypeOf(TourAgencyModel.Package)">
-        <MappingFragment StoreEntitySet="Packages">
-          <ScalarProperty Name="Code" ColumnName="Code" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Duration" ColumnName="Duration" />
-          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
-          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
-          <ScalarProperty Name="FlightId" ColumnName="FlightId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Bookings">
-      <EntityTypeMapping TypeName="IsTypeOf(TourAgencyModel.Booking)">
-        <MappingFragment StoreEntitySet="Bookings">
-          <ScalarProperty Name="BookingCode" ColumnName="BookingCode" />
-          <ScalarProperty Name="PackageCode" ColumnName="PackageCode" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Passengers">
-      <EntityTypeMapping TypeName="IsTypeOf(TourAgencyModel.Passenger)">
-        <MappingFragment StoreEntitySet="Passengers">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Passport" ColumnName="Passport" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="IsTypeOf(TourAgencyModel.User)">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="PackageBooking" TypeName="TourAgencyModel.PackageBooking" StoreEntitySet="Bookings">
-      <EndProperty Name="Package">
-        <ScalarProperty Name="Code" ColumnName="Package_Code" />
-      </EndProperty>
-      <EndProperty Name="Booking">
-        <ScalarProperty Name="BookingCode" ColumnName="BookingCode" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="BookingPassenger" TypeName="TourAgencyModel.BookingPassenger" StoreEntitySet="Passengers">
-      <EndProperty Name="Booking">
-        <ScalarProperty Name="BookingCode" ColumnName="Booking_BookingCode" />
-      </EndProperty>
-      <EndProperty Name="Passenger">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-  </EntityContainerMapping>
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="TourAgencyModel.Booking">
+              <MappingFragment StoreEntitySet="Bookings">
+                <ScalarProperty Name="Package_Code" ColumnName="Package_Code" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="BookingCode" ColumnName="BookingCode" />
+                <ScalarProperty Name="PackageCode" ColumnName="PackageCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packages">
+            <EntityTypeMapping TypeName="TourAgencyModel.Package">
+              <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="FlightId" ColumnName="FlightId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passengers">
+            <EntityTypeMapping TypeName="TourAgencyModel.Passenger">
+              <MappingFragment StoreEntitySet="Passengers">
+                <ScalarProperty Name="Booking_BookingCode" ColumnName="Booking_BookingCode" />
+                <ScalarProperty Name="Passport" ColumnName="Passport" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TourAgencyModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
@@ -217,23 +227,24 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="TourAgencyModel" >
-        <EntityTypeShape EntityType="TourAgencyModel.Package" Width="1.5" PointX="2.625" PointY="2" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="TourAgencyModel.Booking" Width="1.5" PointX="6.875" PointY="0.875" Height="1.9802864583333331" />
-        <EntityTypeShape EntityType="TourAgencyModel.Passenger" Width="1.5" PointX="7.25" PointY="3.875" Height="1.7879850260416665" />
-        <AssociationConnector Association="TourAgencyModel.PackageBooking">
-          <ConnectorPoint PointX="4.125" PointY="2.4276432291666663" />
-          <ConnectorPoint PointX="6.875" PointY="2.4276432291666663" />
+        <EntityTypeShape EntityType="TourAgencyModel.Booking" Width="1.5" PointX="3" PointY="1.25" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="TourAgencyModel.Package" Width="1.5" PointX="0.75" PointY="1" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="TourAgencyModel.Passenger" Width="1.5" PointX="5.25" PointY="1.375" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="TourAgencyModel.User" Width="1.5" PointX="0.75" PointY="4.75" Height="1.4033821614583317" />
+        <AssociationConnector Association="TourAgencyModel.FK_BookingPassenger" >
+          <ConnectorPoint PointX="4.5" PointY="2.3651432291666659" />
+          <ConnectorPoint PointX="5.25" PointY="2.3651432291666659" />
         </AssociationConnector>
-        <AssociationConnector Association="TourAgencyModel.BookingPassenger">
-          <ConnectorPoint PointX="7.8125" PointY="2.8552864583333331" />
-          <ConnectorPoint PointX="7.8125" PointY="3.875" />
+        <AssociationConnector Association="TourAgencyModel.FK_PackageBooking" >
+          <ConnectorPoint PointX="2.25" PointY="2.3362939453125" />
+          <ConnectorPoint PointX="3" PointY="2.3362939453125" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="TourAgencyModel.User" Width="1.5" PointX="4.5" PointY="0.5" Height="1.4033821614583331" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
