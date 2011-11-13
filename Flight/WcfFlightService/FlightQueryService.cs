@@ -117,6 +117,8 @@ namespace WcfFlightService
             else
             {
                 Console.WriteLine("Found - {0} routes", lstRoutes.Count);
+                dtEndDate = dtEndDate.AddDays(1);
+
                 DateTime dtFlight = DateTime.Now;
                 FlightInfo fInfo;
                 string sDate;
