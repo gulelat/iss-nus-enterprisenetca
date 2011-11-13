@@ -65,6 +65,7 @@ namespace Flight_DAL
                 //add the destination 
                 route.Destination = ro.Destination;
                 route.Destination1 = ro.Destination1;
+                //reservation details not added as it is based on the date. 
                 lstRoute.Add(route);
             }
             return lstRoute;
@@ -74,6 +75,7 @@ namespace Flight_DAL
         //same as above, as we assume that the flights operate 7 days a week. 
         public  List<Route> getAllRoutesBetweenCitiesOnDates(string startCityCode, string destinationCode, DateTime start, DateTime end)
         {
+            flightContext.ContextOptions.LazyLoadingEnabled = false;
             var rQuery = from r in flightContext.Routes
                          where r.StartCity.Equals(startCityCode) && (r.EndCity.Equals(destinationCode))
                          select r;
@@ -182,6 +184,7 @@ namespace Flight_DAL
                 res.FlightDate = reserve.FlightDate;            //set the flight date
                 //todo - add the passenger list to the reservation. 
                 //res.Passengers = reserve.Passengers;
+                res.Passengers = new System.Data.Objects.DataClasses.EntityCollection<Passenger>();
                 reserve.Passengers.ToList().ForEach(p => res.Passengers.Add(p));
                 lstReservation.Add(res);
             }
@@ -216,7 +219,7 @@ namespace Flight_DAL
         public List<Reservation> getAllReservationsForDateOnRoute(int iRouteID, DateTime dtFlight)
         {
             var rQuery = (from r in flightContext.Reservations
-                          where r.RouteID == iRouteID && r.FlightDate.Equals(dtFlight)
+                          where r.RouteID == iRouteID && (DateTime.Compare(r.FlightDate, dtFlight) == 0)
                           select r);
             if (rQuery == null) return null;
             if (rQuery.Count() == 0) return null;
@@ -229,6 +232,7 @@ namespace Flight_DAL
                 res.ReservationDate = reserve.ReservationDate; //set reservation date
                 res.RouteID = reserve.RouteID;                //set route id
                 res.FlightDate = reserve.FlightDate;           // set the flight date
+                res.Passengers = new System.Data.Objects.DataClasses.EntityCollection<Passenger>();
                 reserve.Passengers.ToList().ForEach(p => res.Passengers.Add(p));
                 lstReservation.Add(res);
             }

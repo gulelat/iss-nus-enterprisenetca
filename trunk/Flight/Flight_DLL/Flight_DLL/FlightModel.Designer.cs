@@ -125,22 +125,6 @@ namespace Flight_DAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Reservation> Reservations
-        {
-            get
-            {
-                if ((_Reservations == null))
-                {
-                    _Reservations = base.CreateObjectSet<Reservation>("Reservations");
-                }
-                return _Reservations;
-            }
-        }
-        private ObjectSet<Reservation> _Reservations;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Route> Routes
         {
             get
@@ -153,6 +137,22 @@ namespace Flight_DAL
             }
         }
         private ObjectSet<Route> _Routes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Reservation> Reservations
+        {
+            get
+            {
+                if ((_Reservations == null))
+                {
+                    _Reservations = base.CreateObjectSet<Reservation>("Reservations");
+                }
+                return _Reservations;
+            }
+        }
+        private ObjectSet<Reservation> _Reservations;
 
         #endregion
         #region AddTo Methods
@@ -182,19 +182,19 @@ namespace Flight_DAL
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Reservations EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToReservations(Reservation reservation)
-        {
-            base.AddObject("Reservations", reservation);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Routes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToRoutes(Route route)
         {
             base.AddObject("Routes", route);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Reservations EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToReservations(Reservation reservation)
+        {
+            base.AddObject("Reservations", reservation);
         }
 
         #endregion

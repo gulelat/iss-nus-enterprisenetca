@@ -145,7 +145,6 @@
           <EntitySet Name="Destinations" EntityType="FlightDBModel.Destination" />
           <EntitySet Name="Flights" EntityType="FlightDBModel.Flight" />
           <EntitySet Name="Passengers" EntityType="FlightDBModel.Passenger" />
-          <EntitySet Name="Reservations" EntityType="FlightDBModel.Reservation" />
           <EntitySet Name="Routes" EntityType="FlightDBModel.Route" />
           <AssociationSet Name="FK_Route_Destination" Association="FlightDBModel.FK_Route_Destination">
             <End Role="Destination" EntitySet="Destinations" />
@@ -159,6 +158,7 @@
             <End Role="Flight" EntitySet="Flights" />
             <End Role="Route" EntitySet="Routes" />
           </AssociationSet>
+          <EntitySet Name="Reservations" EntityType="FlightDBModel.Reservation" />
           <AssociationSet Name="FK_Passenger_Reservation" Association="FlightDBModel.FK_Passenger_Reservation">
             <End Role="Reservation" EntitySet="Reservations" />
             <End Role="Passenger" EntitySet="Passengers" />
@@ -167,7 +167,7 @@
             <End Role="Route" EntitySet="Routes" />
             <End Role="Reservation" EntitySet="Reservations" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Destination">
           <Key>
             <PropertyRef Name="CityCode" />
@@ -195,17 +195,6 @@
           <Property Type="DateTime" Name="ExpiryDate" Nullable="false" />
           <Property Type="String" Name="ReservationID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Reservation" Relationship="FlightDBModel.FK_Passenger_Reservation" FromRole="Passenger" ToRole="Reservation" />
-        </EntityType>
-        <EntityType Name="Reservation">
-          <Key>
-            <PropertyRef Name="ReservationID" />
-          </Key>
-          <Property Type="String" Name="ReservationID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="RouteID" Nullable="false" />
-          <Property Type="DateTime" Name="ReservationDate" Nullable="false" />
-          <NavigationProperty Name="Passengers" Relationship="FlightDBModel.FK_Passenger_Reservation" FromRole="Reservation" ToRole="Passenger" />
-          <NavigationProperty Name="Route" Relationship="FlightDBModel.FK_Reservation_Route" FromRole="Reservation" ToRole="Route" />
-          <Property Type="DateTime" Name="FlightDate" Nullable="false" />
         </EntityType>
         <EntityType Name="Route">
           <Key>
@@ -259,6 +248,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Type="String" Name="ReservationID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RouteID" Nullable="false" />
+          <Property Type="DateTime" Name="ReservationDate" Nullable="false" />
+          <Property Type="DateTime" Name="FlightDate" Nullable="false" />
+          <NavigationProperty Name="Passengers" Relationship="FlightDBModel.FK_Passenger_Reservation" FromRole="Reservation" ToRole="Passenger" />
+          <NavigationProperty Name="Route" Relationship="FlightDBModel.FK_Reservation_Route" FromRole="Reservation" ToRole="Route" />
+        </EntityType>
         <Association Name="FK_Passenger_Reservation">
           <End Type="FlightDBModel.Reservation" Role="Reservation" Multiplicity="1" />
           <End Type="FlightDBModel.Passenger" Role="Passenger" Multiplicity="*" />
@@ -316,16 +316,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Reservations">
-            <EntityTypeMapping TypeName="FlightDBModel.Reservation">
-              <MappingFragment StoreEntitySet="Reservation">
-                <ScalarProperty Name="FlightDate" ColumnName="FlightDate" />
-                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
-                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
-                <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Routes">
             <EntityTypeMapping TypeName="FlightDBModel.Route">
               <MappingFragment StoreEntitySet="Route">
@@ -336,6 +326,16 @@
                 <ScalarProperty Name="FlightTime" ColumnName="FlightTime" />
                 <ScalarProperty Name="FlightID" ColumnName="FlightID" />
                 <ScalarProperty Name="RouteID" ColumnName="RouteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="FlightDBModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="FlightDate" ColumnName="FlightDate" />
+                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
+                <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -362,24 +362,24 @@
         <EntityTypeShape EntityType="FlightDBModel.Destination" Width="1.5" PointX="0.75" PointY="1.625" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="FlightDBModel.Flight" Width="1.5" PointX="0.75" PointY="5.75" Height="1.5956835937499996" />
         <EntityTypeShape EntityType="FlightDBModel.Passenger" Width="1.5" PointX="7.5" PointY="1.5" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="FlightDBModel.Reservation" Width="1.5" PointX="5.25" PointY="1.5" Height="1.9802864583333317" />
         <EntityTypeShape EntityType="FlightDBModel.Route" Width="1.5" PointX="3" PointY="1" Height="3.1340950520833326" />
         <AssociationConnector Association="FlightDBModel.FK_Route_Destination" >
-          <ConnectorPoint PointX="2.25" PointY="2.8374276733398442" />
-          <ConnectorPoint PointX="3" PointY="2.8374276733398442" />
+          <ConnectorPoint PointX="2.25" PointY="2.8573298708597825" />
+          <ConnectorPoint PointX="3" PointY="2.8573298708597825" />
         </AssociationConnector>
         <AssociationConnector Association="FlightDBModel.FK_Route_Destination1" >
-          <ConnectorPoint PointX="2.25" PointY="2.1687138366699221" />
-          <ConnectorPoint PointX="3" PointY="2.1687138366699221" />
+          <ConnectorPoint PointX="2.25" PointY="2.1786649354298913" />
+          <ConnectorPoint PointX="3" PointY="2.1786649354298913" />
         </AssociationConnector>
         <AssociationConnector Association="FlightDBModel.FK_Route_Flight" >
           <ConnectorPoint PointX="2.25" PointY="6.547841796875" />
           <ConnectorPoint PointX="3.75" PointY="6.547841796875" />
           <ConnectorPoint PointX="3.75" PointY="4.1340950520833326" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="FlightDBModel.Reservation" Width="1.5" PointX="5.25" PointY="1.5" Height="2.1725878906249996" />
         <AssociationConnector Association="FlightDBModel.FK_Passenger_Reservation" >
-          <ConnectorPoint PointX="6.75" PointY="2.4901432291666659" />
-          <ConnectorPoint PointX="7.5" PointY="2.4901432291666659" />
+          <ConnectorPoint PointX="6.75" PointY="2.5862939453125" />
+          <ConnectorPoint PointX="7.5" PointY="2.5862939453125" />
         </AssociationConnector>
         <AssociationConnector Association="FlightDBModel.FK_Reservation_Route" >
           <ConnectorPoint PointX="4.5" PointY="2.5862939453125" />
