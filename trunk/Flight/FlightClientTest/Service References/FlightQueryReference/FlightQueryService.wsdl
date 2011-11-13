@@ -385,7 +385,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:12345/FlightService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>Pragati-PC\Pragati</Upn>
+          <Upn>muthu-VAIO\muthu</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="TourAgencyModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityContainer Name="TourAgencyModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bookings" EntityType="TourAgencyModel.Booking" />
+    <EntitySet Name="Packages" EntityType="TourAgencyModel.Package" />
+    <EntitySet Name="Passengers" EntityType="TourAgencyModel.Passenger" />
+    <EntitySet Name="Users" EntityType="TourAgencyModel.User" />
+    <AssociationSet Name="FK_BookingPassenger" Association="TourAgencyModel.FK_BookingPassenger">
+      <End Role="Booking" EntitySet="Bookings" />
+      <End Role="Passenger" EntitySet="Passengers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageBooking" Association="TourAgencyModel.FK_PackageBooking">
+      <End Role="Package" EntitySet="Packages" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="BookingCode" />
+    </Key>
+    <Property Type="Int32" Name="PackageCode" Nullable="false" />
+    <Property Type="Int32" Name="BookingCode" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" />
+    <Property Type="Int32" Name="Package_Code" Nullable="false" />
+    <NavigationProperty Name="Passengers" Relationship="TourAgencyModel.FK_BookingPassenger" FromRole="Booking" ToRole="Passenger" />
+    <NavigationProperty Name="Package" Relationship="TourAgencyModel.FK_PackageBooking" FromRole="Booking" ToRole="Package" />
+  </EntityType>
+  <EntityType Name="Package">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Type="Int32" Name="Code" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Duration" Nullable="false" />
+    <Property Type="Int32" Name="Capacity" Nullable="false" />
+    <Property Type="String" Name="HotelId" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FlightId" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="From" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="To" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Bookings" Relationship="TourAgencyModel.FK_PackageBooking" FromRole="Package" ToRole="Booking" />
+  </EntityType>
+  <EntityType Name="Passenger">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Passport" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Booking_BookingCode" Nullable="false" />
+    <NavigationProperty Name="Booking" Relationship="TourAgencyModel.FK_BookingPassenger" FromRole="Passenger" ToRole="Booking" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Int32" Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_BookingPassenger">
+    <End Type="TourAgencyModel.Booking" Role="Booking" Multiplicity="1" />
+    <End Type="TourAgencyModel.Passenger" Role="Passenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="BookingCode" />
+      </Principal>
+      <Dependent Role="Passenger">
+        <PropertyRef Name="Booking_BookingCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageBooking">
+    <End Type="TourAgencyModel.Package" Role="Package" Multiplicity="1" />
+    <End Type="TourAgencyModel.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Package">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Package_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -4,3 +4,9 @@ C:\code\ASP.NET\HotelService\HotelService\bin\Debug\HotelService.pdb
 C:\code\ASP.NET\HotelService\HotelService\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\code\ASP.NET\HotelService\HotelService\obj\x86\Debug\HotelService.exe
 C:\code\ASP.NET\HotelService\HotelService\obj\x86\Debug\HotelService.pdb
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelService\bin\Debug\HotelService.dll.config
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelService\bin\Debug\HotelService.dll
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelService\bin\Debug\HotelService.pdb
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelService\obj\x86\Debug\ResolveAssemblyReference.cache
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelService\obj\x86\Debug\HotelService.dll
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelService\obj\x86\Debug\HotelService.pdb

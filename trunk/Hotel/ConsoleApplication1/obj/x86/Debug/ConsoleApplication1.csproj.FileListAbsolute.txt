@@ -14,3 +14,11 @@ C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\bin\Debug\ConsoleApplication1.pd
 C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\bin\Debug\HotelService.dll
 C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\bin\Debug\HotelService.pdb
 C:\code\ASP.NET\Hotel\Hotel\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+J:\Shree\Net-II\CA\Project\trunk\Hotel\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+J:\Shree\Net-II\CA\Project\trunk\Hotel\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+J:\Shree\Net-II\CA\Project\trunk\Hotel\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+J:\Shree\Net-II\CA\Project\trunk\Hotel\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+J:\Shree\Net-II\CA\Project\trunk\Hotel\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+J:\Shree\Net-II\CA\Project\trunk\Hotel\ConsoleApplication1\bin\Debug\HotelService.dll
+J:\Shree\Net-II\CA\Project\trunk\Hotel\ConsoleApplication1\bin\Debug\HotelService.pdb
+J:\Shree\Net-II\CA\Project\trunk\Hotel\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache

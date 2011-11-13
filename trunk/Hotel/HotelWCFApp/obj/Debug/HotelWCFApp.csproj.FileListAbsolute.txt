@@ -7,3 +7,12 @@ C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\bin\ConsoleApplication1.pdb
 C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\bin\HotelService.pdb
 C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\obj\Debug\HotelWCFApp.dll
 C:\code\ASP.NET\Hotel\Hotel\HotelWCFApp\obj\Debug\HotelWCFApp.pdb
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelWCFApp\bin\HotelWCFApp.dll
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelWCFApp\bin\HotelWCFApp.pdb
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelWCFApp\bin\ConsoleApplication1.exe
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelWCFApp\bin\HotelService.dll
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelWCFApp\bin\ConsoleApplication1.pdb
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelWCFApp\bin\HotelService.pdb
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelWCFApp\obj\Debug\ResolveAssemblyReference.cache
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelWCFApp\obj\Debug\HotelWCFApp.dll
+J:\Shree\Net-II\CA\Project\trunk\Hotel\HotelWCFApp\obj\Debug\HotelWCFApp.pdb

@@ -36,7 +36,7 @@ namespace FlightClientTest
 
             test.proxy.getListOfAllAvailableFlightsBetweenCitiesOnDates(sStart, sEnd, DateTime.Now, DateTime.Now.AddDays(2));
 
-            DateTime dtFlight = DateTime.ParseExact("08 Nov 2011 11:00", "dd MMM yyyy HH:mm", null);
+            DateTime dtFlight = DateTime.ParseExact("08 Nov 2011 20:00", "dd MMM yyyy HH:mm", null);
             test.proxy.checkIfAvailable(sStart, sEnd, dtFlight, 2);
 
             Console.WriteLine("Booking tickets now...");
