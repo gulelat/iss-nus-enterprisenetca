@@ -109,9 +109,11 @@ namespace TA.Window
         {
             if (_dictPassengers.Count > 0)
             {
+                DateTime flightDepartureDate = (DateTime)dgvFlightInformation["DepartureTime", dgvFlightInformation.CurrentRow.Index].Value;
+
                 string from = (string)cmbFrom.SelectedValue;
                 string to = (string)cmbTo.SelectedValue;
-                DateTime start = new DateTime(dtpStart.Value.Year, dtpStart.Value.Month, dtpStart.Value.Day, 20, 0, 0);
+                DateTime start = new DateTime(dtpStart.Value.Year, dtpStart.Value.Month, dtpStart.Value.Day, flightDepartureDate.Hour, flightDepartureDate.Minute, flightDepartureDate.Second);
                 DateTime end = dtpEnd.Value;
 
                 PassengerInfo[] passengers = new PassengerInfo[_dictPassengers.Count];
