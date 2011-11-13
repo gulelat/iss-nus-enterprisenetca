@@ -9,7 +9,7 @@ using System.Globalization;
 
 namespace WcfFlightService
 {
-    [ServiceBehavior(InstanceContextMode=InstanceContextMode.PerSession,
+    [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single,
                         ConcurrencyMode=ConcurrencyMode.Multiple)]
     public partial class FlightQueryService :IFlightQueryService
     {
@@ -116,16 +116,16 @@ namespace WcfFlightService
             }
             else
             {
-//                Console.WriteLine("Found - {0} routes", lstRoutes.Count);
+                Console.WriteLine("Found - {0} routes", lstRoutes.Count);
                 DateTime dtFlight = DateTime.Now;
                 FlightInfo fInfo;
                 string sDate;
                 foreach (Route r in lstRoutes)
                 {
                     dtFlight = dtStartDate;
-                    while (dtFlight < dtEndDate)
+                    while (dtFlight <= dtEndDate)
                     {
-//                        Console.WriteLine("Checking route {1} for date - {0}", dtFlight.ToString(), r.RouteID);
+                        Console.WriteLine("Checking route {1} for date - {0}", r.FlightTime, r.RouteID);
                         fInfo = new FlightInfo();
                         fInfo.RouteID = r.RouteID;
                         fInfo.AdultRate = r.AdultFare;
@@ -138,7 +138,6 @@ namespace WcfFlightService
                         sDate = dtFlight.ToString("dd MMM yyyy ") + r.FlightTime;
                         fInfo.FlightTime = DateTime.ParseExact(sDate, "dd MMM yyyy HH:mm", null);    //date+time component
                         fInfo.NumSeatsAvailable = getNumSeatsAvailable(r, fInfo.FlightTime);
-//                        Console.WriteLine(fInfo.ToString());
                         lstReturn.Add(fInfo);
                         dtFlight = dtFlight.AddDays(1);
                     }
@@ -157,8 +156,12 @@ namespace WcfFlightService
             int capacity = r.Flight.Capacity;
 //            Console.WriteLine("Flight capacity - {0}", capacity);
 
-            //get the list of reservations done for the route - includes all the dates
-            List<Reservation> lstReserve = r.Reservations.ToList(); 
+            //get the list of reservations done for the route - includes details for the given date only
+            List<Reservation> lstReserve;
+            lock (this)
+            {
+                lstReserve = myFlightBLL.getFlightBLLInstance().getAllReservationsForDateOnRoute(r.RouteID, dtFlight);
+            }
             if (lstReserve == null)
                 return capacity;
 
@@ -213,7 +216,11 @@ namespace WcfFlightService
             else
             {
                 int iReserved;
-                Route r = getRoute(sStartCityCode, sEndCityCode, dtFlightDate);
+                //Route r = getRoute(sStartCityCode, sEndCityCode, dtFlightDate);
+                Route r = (from ro in lstRoutes
+                           where ro.FlightTime.Equals(dtFlightDate.ToString("HH:mm"))
+                           select ro).FirstOrDefault();
+
                 if (r == null)
                 {
                     callerProxy.onAvailabilityQueryCallback(false); // no seats available, as no route found

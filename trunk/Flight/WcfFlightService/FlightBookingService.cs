@@ -36,6 +36,7 @@ namespace WcfFlightService
                     string sReservationID;
                     lock (this)
                     {
+
                         sReservationID = myFlightBLL.getFlightBLLInstance().reserveFlight(r.RouteID, dtFlightDate, lstPassengers);
                         bStatus = myFlightBLL.getFlightBLLInstance().makePayment(sReservationID, getPaymentDetails(pInfo));
                     }
@@ -101,8 +102,12 @@ namespace WcfFlightService
             int capacity = r.Flight.Capacity;
             //            Console.WriteLine("Flight capacity - {0}", capacity);
 
-            //get the list of reservations done for the route - includes all the dates
-            List<Reservation> lstReserve = r.Reservations.ToList();
+            //get the list of reservations done for the route - for a given date
+            List<Reservation> lstReserve;
+            lock (this)
+            {
+                lstReserve = myFlightBLL.getFlightBLLInstance().getAllReservationsForDateOnRoute(r.RouteID, dtFlight);
+            }
             if (lstReserve == null)
                 return capacity;
 
@@ -113,7 +118,7 @@ namespace WcfFlightService
                 if (DateTime.Compare(rsv.FlightDate, dtFlight) == 0)
                     totalCount += rsv.Passengers.Count();
             }
-            //            Console.WriteLine("Total reservations found - {0}", totalCount);
+            Console.WriteLine("Total reservations found - {0}", totalCount);
 
             return (capacity - totalCount);
         }

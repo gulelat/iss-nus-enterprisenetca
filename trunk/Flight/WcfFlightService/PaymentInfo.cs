@@ -6,7 +6,7 @@ namespace WcfFlightService
     [DataContract]
     public class PaymentInfo
     {
-        [DataMember]
+        [DataMember(IsRequired = true)]
         private string cardholdername;
 
         public string Cardholdername
@@ -24,7 +24,7 @@ namespace WcfFlightService
             set { cardname = value; }
         }
 
-        [DataMember]
+        [DataMember(IsRequired = true)]
         private DateTime expiryDate;
 
         public DateTime ExpiryDate
@@ -33,7 +33,7 @@ namespace WcfFlightService
             set { expiryDate = value; }
         }
 
-        [DataMember]
+        [DataMember(IsRequired = true)]
         private string cv2;
 
         public string Cv2

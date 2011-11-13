@@ -6,7 +6,7 @@ namespace WcfFlightService
     [DataContract]
     public class PassengerInfo
     {
-        [DataMember]
+        [DataMember(IsRequired=true)]
         private string passengerName;
 
         public string PassengerName
@@ -15,7 +15,7 @@ namespace WcfFlightService
             set { passengerName = value; }
         }
 
-        [DataMember]
+        [DataMember(IsRequired = true)]
         private string passportNo;
 
         public string PassportNo
@@ -24,7 +24,7 @@ namespace WcfFlightService
             set { passportNo = value; }
         }
 
-        [DataMember]
+        [DataMember(IsRequired = true)]
         private DateTime expiryDate;
 
         public DateTime ExpiryDate
