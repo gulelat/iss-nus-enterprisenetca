@@ -113,8 +113,6 @@ namespace TA.Window
 
                 string from = (string)cmbFrom.SelectedValue;
                 string to = (string)cmbTo.SelectedValue;
-                DateTime start = new DateTime(dtpStart.Value.Year, dtpStart.Value.Month, dtpStart.Value.Day, flightDepartureDate.Hour, flightDepartureDate.Minute, flightDepartureDate.Second);
-                DateTime end = dtpEnd.Value;
 
                 PassengerInfo[] passengers = new PassengerInfo[_dictPassengers.Count];
                 int i = 0;
@@ -132,11 +130,11 @@ namespace TA.Window
 
                 try
                 {
-                    if (flightBooking.checkAvailability(from, to, start, passengers.Length))
+                    if (flightBooking.checkAvailability(from, to, flightDepartureDate, passengers.Length))
                     {
                         MessageBox.Show("Seats Available...");
 
-                        if (flightBooking.makeReservation(from, to, start, passengers, payment))
+                        if (flightBooking.makeReservation(from, to, flightDepartureDate, passengers, payment))
                             MessageBox.Show("Successfully reserved...");
                         else
                             MessageBox.Show("Reservation unsuccessful...");

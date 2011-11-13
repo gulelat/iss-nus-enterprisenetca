@@ -121,8 +121,8 @@ namespace TA.Window
 
                 string from = packageInfo.From;
                 string to = packageInfo.To;
-                DateTime start = dtpStartDate.Value;
-                DateTime end = start.AddDays(packageInfo.Duration);
+                DateTime flightDepartureDate = (DateTime)dgvFlightInformation["DepartureTime", dgvFlightInformation.CurrentRow.Index].Value;
+                DateTime end = flightDepartureDate.AddDays(packageInfo.Duration);
 
                 PassengerInfo[] passengers = new PassengerInfo[_dictPassengers.Count];
                 int i = 0;
@@ -143,11 +143,11 @@ namespace TA.Window
                 {
                     try
                     {
-                        if (flightBooking.checkAvailability(from, to, start, passengers.Length))
+                        if (flightBooking.checkAvailability(from, to, flightDepartureDate, passengers.Length))
                         {
                             MessageBox.Show("Flight Seats Available...");
 
-                            if (flightBooking.makeReservation(from, to, start, passengers, payment))
+                            if (flightBooking.makeReservation(from, to, flightDepartureDate, passengers, payment))
                                 MessageBox.Show("Flight Reservation Successful...");
                             else
                                 throw new Exception("Flight Reservation unsuccessful...");
