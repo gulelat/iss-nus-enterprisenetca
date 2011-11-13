@@ -17,6 +17,8 @@ namespace WcfFlightService
         public bool makeReservation(string sStartCityCode, string sEndCityCode, DateTime dtFlightDate, PassengerInfo[] passengers, PaymentInfo pInfo)
         {
             Console.WriteLine("Making reservation for {0} to {1} on {2} for {3} Passengers", sStartCityCode, sEndCityCode, dtFlightDate.ToString(), passengers.Count());
+            if (DateTime.Compare(dtFlightDate, DateTime.Now) <= 0) return false;
+
             List<Flight_DAL.Route> lstRoutes;
             bool bStatus = false;
             lock (this)
