@@ -72,12 +72,12 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="RoomReservationPayment" TypeName="HotelDBModel.RoomReservationPayment" StoreEntitySet="Payments">
-      <EndProperty Name="RoomReservation">
-        <ScalarProperty Name="Id" ColumnName="RoomReservation_Id" />
-      </EndProperty>
+    <AssociationSetMapping Name="RoomReservationPayment" TypeName="HotelDBModel.RoomReservationPayment" StoreEntitySet="RoomReservations">
       <EndProperty Name="Payment">
-        <ScalarProperty Name="id" ColumnName="id" />
+        <ScalarProperty Name="id" ColumnName="Payment_id" />
+      </EndProperty>
+      <EndProperty Name="RoomReservation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

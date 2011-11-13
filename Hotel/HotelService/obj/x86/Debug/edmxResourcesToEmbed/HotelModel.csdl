@@ -56,7 +56,7 @@
     <Property Type="Int32" Name="NoOfGuest" Nullable="false" />
     <NavigationProperty Name="Room" Relationship="HotelDBModel.RoomRoomReservation" FromRole="RoomReservation" ToRole="Room" />
     <NavigationProperty Name="Guest" Relationship="HotelDBModel.GuestRoomReservation" FromRole="RoomReservation" ToRole="Guest" />
-    <NavigationProperty Name="Payments" Relationship="HotelDBModel.RoomReservationPayment" FromRole="RoomReservation" ToRole="Payment" />
+    <NavigationProperty Name="Payment" Relationship="HotelDBModel.RoomReservationPayment" FromRole="RoomReservation" ToRole="Payment" />
   </EntityType>
   <EntityType Name="Guest">
     <Key>
@@ -87,6 +87,6 @@
   </EntityType>
   <Association Name="RoomReservationPayment">
     <End Type="HotelDBModel.RoomReservation" Role="RoomReservation" Multiplicity="1" />
-    <End Type="HotelDBModel.Payment" Role="Payment" Multiplicity="*" />
+    <End Type="HotelDBModel.Payment" Role="Payment" Multiplicity="1" />
   </Association>
 </Schema>

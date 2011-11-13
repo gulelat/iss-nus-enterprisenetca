@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FlightDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="FlightDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="FlightDBModelStoreContainer">
           <EntitySet Name="Destination" EntityType="FlightDBModel.Store.Destination" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Flight" EntityType="FlightDBModel.Store.Flight" store:Type="Tables" Schema="dbo" />
@@ -53,7 +53,7 @@
           <Property Name="PassengerID" Type="int" Nullable="false" />
           <Property Name="PassengerName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="PassportNo" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ExpiryDate" Type="date" Nullable="false" />
+          <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
           <Property Name="ReservationID" Type="nvarchar" Nullable="false" MaxLength="10" />
         </EntityType>
         <EntityType Name="Reservation">
@@ -62,8 +62,8 @@
           </Key>
           <Property Name="ReservationID" Type="nvarchar" Nullable="false" MaxLength="10" />
           <Property Name="RouteID" Type="int" Nullable="false" />
-          <Property Name="ReservationDate" Type="date" Nullable="false" />
-          <Property Name="FlightDate" Type="date" Nullable="false" />
+          <Property Name="ReservationDate" Type="datetime" Nullable="false" />
+          <Property Name="FlightDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Route">
           <Key>

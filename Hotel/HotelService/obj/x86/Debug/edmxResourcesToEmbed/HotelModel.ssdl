@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="HotelDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+<Schema Namespace="HotelDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="HotelDBModelStoreContainer">
     <EntitySet Name="RoomTypes" EntityType="HotelDBModel.Store.RoomTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Rooms" EntityType="HotelDBModel.Store.Rooms" store:Type="Tables" Schema="dbo" />
@@ -50,6 +50,7 @@
     <Property Name="NoOfGuest" Type="int" Nullable="false" />
     <Property Name="Room_Id" Type="int" Nullable="false" />
     <Property Name="Guest_Id" Type="int" Nullable="false" />
+    <Property Name="Payment_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Guests">
     <Key>
@@ -67,7 +68,6 @@
     <Property Name="GuestAccount" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TotalCharge" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CardType" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="RoomReservation_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="RoomTypeRoom">
     <End Role="RoomType" Type="HotelDBModel.Store.RoomTypes" Multiplicity="1" />
@@ -106,14 +106,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RoomReservationPayment">
-    <End Role="RoomReservation" Type="HotelDBModel.Store.RoomReservations" Multiplicity="1" />
-    <End Role="Payment" Type="HotelDBModel.Store.Payments" Multiplicity="*" />
+    <End Role="RoomReservation" Type="HotelDBModel.Store.RoomReservations" Multiplicity="*" />
+    <End Role="Payment" Type="HotelDBModel.Store.Payments" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="RoomReservation">
-        <PropertyRef Name="Id" />
+      <Principal Role="Payment">
+        <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Payment">
-        <PropertyRef Name="RoomReservation_Id" />
+      <Dependent Role="RoomReservation">
+        <PropertyRef Name="Payment_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
