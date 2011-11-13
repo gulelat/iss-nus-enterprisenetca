@@ -17,7 +17,7 @@ namespace Flight.BLL
 
         //get all the flight routes plying between two cities
         List<Route> getFlightsBetweenCities(string startCityCode, string destCityCode);
-       
+
         //check if the flight selected is available
         bool checkIfAvailable(int iRouteID, DateTime dtFlight, int numSeats);
 
@@ -27,8 +27,8 @@ namespace Flight.BLL
         //make the payment - against the ticketing reference
         bool makePayment(string sReservations, PaymentDetails pDetails);
 
-        //get the route for the given ID
-
+        //get the reservations for a given route for the given ID and date
+        List<Reservation> getAllReservationsForDateOnRoute(int iRouteID, DateTime dtFlight);
 
 
     }

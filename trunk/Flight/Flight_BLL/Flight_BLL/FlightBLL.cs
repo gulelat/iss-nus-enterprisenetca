@@ -25,9 +25,13 @@ namespace Flight.BLL
 
         public List<Flight_DAL.Route> getFlightsBetweenCities(string startCityCode, string destCityCode)
         {
-            FlightDAOFactory flightDAL = FlightDAOFactory.getInstance();
-            return flightDAL.getFlightDALInstance().getAllRoutesBetweenCities(startCityCode, destCityCode);
+            lock (this)
+            {
+                FlightDAOFactory flightDAL = FlightDAOFactory.getInstance();
+                return flightDAL.getFlightDALInstance().getAllRoutesBetweenCities(startCityCode, destCityCode);
+            }
         }
+
 
         public bool checkIfAvailable(int iRouteID, DateTime dtFlight, int numSeats)
         {
@@ -87,6 +91,12 @@ namespace Flight.BLL
                 Console.WriteLine(f.Message);
                 throw f;
             }
+        }
+
+        public List<Reservation> getAllReservationsForDateOnRoute(int iRouteID, DateTime dtFlight)
+        {
+            IFlightDAL flightDAL = FlightDAOFactory.getInstance().getFlightDALInstance();
+            return flightDAL.getAllReservationsForDateOnRoute(iRouteID, dtFlight);
         }
 
 
