@@ -103,6 +103,10 @@ namespace WcfFlightService
             IFlightQueryCallback callerProxy = OperationContext.Current.GetCallbackChannel<IFlightQueryCallback>();
             CultureInfo provider = CultureInfo.InvariantCulture;
 
+            //start date time set to 00:00 and end date time component set to 23:59
+            dtStartDate = new DateTime(dtStartDate.Year, dtStartDate.Month, dtStartDate.Day, 00, 00, 00);
+            dtEndDate = new DateTime(dtEndDate.Year, dtEndDate.Month, dtEndDate.Day, 23, 59, 59);
+
             List<FlightInfo> lstReturn = new List<FlightInfo>();
             List<Flight_DAL.Route> lstRoutes;
             lock (this)
@@ -117,8 +121,6 @@ namespace WcfFlightService
             else
             {
                 Console.WriteLine("Found - {0} routes", lstRoutes.Count);
-                dtEndDate = dtEndDate.AddDays(1);
-
                 DateTime dtFlight = DateTime.Now;
                 FlightInfo fInfo;
                 string sDate;
