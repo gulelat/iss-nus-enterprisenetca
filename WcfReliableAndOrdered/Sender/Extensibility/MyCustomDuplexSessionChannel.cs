@@ -1,10 +1,13 @@
 using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using System.Diagnostics;
+using System.Xml;
+using System.Text.RegularExpressions;
 
 namespace Extensibility
 {
-    class MyCustomDuplexSessionChannel: IDuplexSessionChannel
+    class MyCustomDuplexSessionChannel : IDuplexSessionChannel
     {
         private IDuplexSessionChannel innerChannel = null;
         private IMessageInterceptor interceptor = null;
@@ -101,7 +104,7 @@ namespace Extensibility
 
         public EndpointAddress LocalAddress
         {
-            get 
+            get
             {
                 return this.innerChannel.LocalAddress;
             }
@@ -139,7 +142,7 @@ namespace Extensibility
         #endregion
 
         #region ICommunicationObject Members
-         
+
         public void Abort()
         {
             this.innerChannel.Abort();
@@ -207,7 +210,7 @@ namespace Extensibility
 
         public CommunicationState State
         {
-            get 
+            get
             {
                 return this.innerChannel.State;
             }
@@ -234,16 +237,23 @@ namespace Extensibility
 
         public EndpointAddress RemoteAddress
         {
-            get 
+            get
             {
                 return this.innerChannel.RemoteAddress;
             }
         }
 
-        
+
         public void Send(Message message, TimeSpan timeout)
         {
             this.interceptor.ProcessSend(ref message);
+            if (message != null)
+            {
+                string s = message.ToString();
+                Regex r = new Regex("<content>.*?</content>");
+                Match m = r.Match(s);
+                Debug.WriteLine(m.Groups[0].Value);
+            }
             if (!(message == null))
             {
                 this.innerChannel.Send(message, timeout);
@@ -257,7 +267,7 @@ namespace Extensibility
 
         public Uri Via
         {
-            get 
+            get
             {
                 return this.innerChannel.Via;
             }
@@ -269,7 +279,7 @@ namespace Extensibility
 
         public IDuplexSession Session
         {
-            get 
+            get
             {
                 return this.innerChannel.Session;
             }

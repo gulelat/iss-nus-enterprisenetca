@@ -59,7 +59,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "Sender";
-            this.Text = "Receiver";
+            this.Text = "Sender";
             this.ResumeLayout(false);
             this.PerformLayout();
 
